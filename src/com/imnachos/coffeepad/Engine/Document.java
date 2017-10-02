@@ -1,8 +1,6 @@
 package com.imnachos.coffeepad.Engine;
 
-public class FileManager {
-
-
+public class Document {
 
 
 }

@@ -1,8 +1,12 @@
 package com.imnachos.coffeepad.Engine;
 
+import com.imnachos.coffeepad.Util.CommandManager;
+import com.imnachos.coffeepad.Util.LogManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Map;
 
 public class Editor extends JFrame implements ActionListener{
 
@@ -10,22 +14,23 @@ public class Editor extends JFrame implements ActionListener{
     private JToolBar toolbar;
     private JScrollPane scrollbar;
 
-    private JTextArea canvas;
-
     //Menu
     private JMenu MENU_FILE, MENU_EDIT;
 
     //Text utils
-    private String clipboard;
+    public static String clipboard;
+    public static JTextArea canvas;
+    public static CommandManager commandManager;
 
     /*
         Initialization of the text editor.
      */
-
     public Editor(){
         super(Settings.DEFAULT_TITLE);
         ImageIcon img = new ImageIcon(Settings.WINDOW_ICON);
         this.setIconImage(img.getImage());
+
+        commandManager = new CommandManager();
 
         setSize(Settings.DEFAULT_WINDOW_WIDTH, Settings.DEFAULT_WINDOW_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +40,8 @@ public class Editor extends JFrame implements ActionListener{
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
-            Logger.printLog("Unhandled exception. Todo.");
+            LogManager.printLog("Unhandled exception. Todo.");
+            e.printStackTrace();
         }
 
         canvas = new JTextArea();
@@ -46,9 +52,9 @@ public class Editor extends JFrame implements ActionListener{
         canvas.setWrapStyleWord(true);
 
         MENU_FILE = new JMenu(Settings.LABEL_FILE);
-        buildFileMenu(MENU_FILE);
+        buildMenu(MENU_FILE, Settings.FUNCTIONS_FILE);
         MENU_EDIT = new JMenu(Settings.LABEL_EDIT);
-        buildEditMenu(MENU_EDIT);
+        buildMenu(MENU_EDIT, Settings.FUNCTIONS_EDIT);
 
         //Create toolbars
 
@@ -66,28 +72,23 @@ public class Editor extends JFrame implements ActionListener{
     }
 
     /*
-        Construct the edit menu items.
+        Construct menus from a given map for a JMenu
      */
-    private void buildEditMenu(JMenu menu){
-
-        Settings.FUNCTIONS_EDIT.forEach((key, value) -> {
+    private void buildMenu(JMenu menu, Map<String, Integer> functionMap){
+        functionMap.forEach((key, value) -> {
             JMenuItem item = new JMenuItem(key);
+            String classPath = "com.imnachos.coffeepad.Functions." + key;
+            classPath = classPath.replaceAll("\\s+","");
             item.addActionListener(this);
             item.setAccelerator(KeyStroke.getKeyStroke(value, ActionEvent.CTRL_MASK));
             item.setName(key);
-            menu.add(item);
-        });
-
-    }
-    /*
-        Construct file menu items.
-     */
-    private void buildFileMenu(JMenu menu){
-        Settings.FUNCTIONS_FILE.forEach((key, value) -> {
-            JMenuItem item = new JMenuItem(key);
-            item.addActionListener(this);
-            item.setAccelerator(KeyStroke.getKeyStroke(value, ActionEvent.CTRL_MASK));
-            item.setName(key);
+            try{
+                Object action = Class.forName(classPath).newInstance();
+                item.setAction((AbstractAction) action);
+            }catch(Exception e){
+                LogManager.printLog("Unhandled exception. Todo.");
+                e.printStackTrace();
+            }
             menu.add(item);
         });
     }
@@ -95,36 +96,10 @@ public class Editor extends JFrame implements ActionListener{
     /*
         Implementation of actionPerformed method.
      */
-
     public void actionPerformed(ActionEvent event) {
-        JMenuItem clickedItem = (JMenuItem) event.getSource();
 
-         switch(clickedItem.getName()){
-
-             case Settings.LABEL_CUT:
-                clipboard = canvas.getSelectedText();
-                canvas.replaceRange("", canvas.getSelectionStart(), canvas.getSelectionEnd());
-                break;
-
-             case Settings.LABEL_COPY:
-                 clipboard = canvas.getSelectedText();
-                 break;
-
-             case Settings.LABEL_PASTE:
-                 canvas.insert(clipboard, canvas.getCaretPosition());
-                 break;
-
-             case Settings.LABEL_SELECT:
-                 canvas.selectAll();
-                 break;
-
-             case Settings.LABEL_SAVE:
-                 break;
-
-             case Settings.LABEL_EXIT:
-                 System.exit(0);
-                 break;
-        }
+        JMenuItem item = (JMenuItem) event.getSource();
+        item.getAction().actionPerformed(event);
 
     }
 }

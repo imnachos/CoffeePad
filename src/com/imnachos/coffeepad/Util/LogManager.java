@@ -1,6 +1,6 @@
-package com.imnachos.coffeepad.Engine;
+package com.imnachos.coffeepad.Util;
 
-public class Logger {
+public class LogManager {
 
     public static void printLog(String text){
         System.out.println(text);
