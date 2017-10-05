@@ -11,14 +11,16 @@ public class Cut extends Command {
     private int selectionEnd;
 
     public void actionPerformed(ActionEvent event){
-        selectedText = Editor.canvas.getSelectedText();
-        Editor.clipboard = selectedText;
-        selectionStart = Editor.canvas.getSelectionStart();
-        selectionEnd = Editor.canvas.getSelectionEnd();
+        if(Editor.canvas.getSelectedText() != null){
+            selectedText = Editor.canvas.getSelectedText();
+            Editor.clipboard = selectedText;
+            selectionStart = Editor.canvas.getSelectionStart();
+            selectionEnd = Editor.canvas.getSelectionEnd();
 
-        Editor.canvas.replaceRange("", selectionStart, selectionEnd);
-        System.out.println("DO CUT " + selectedText + selectionStart + selectionEnd);
-        Editor.commandManager.addToUndoStack(this);
+            Editor.canvas.replaceRange("", selectionStart, selectionEnd);
+            System.out.println("DO CUT " + selectedText + selectionStart + selectionEnd);
+            Editor.commandManager.addToUndoStack(this);
+        }
     }
 
     public void undoAction(ActionEvent event){

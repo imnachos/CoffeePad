@@ -21,6 +21,7 @@ public class Settings {
     public static final String LABEL_EDIT = "Edit";
 
     private static final String LABEL_SAVE = "Save";
+    public static final String LABEL_SAVE_AS = "Save as";
     private static final String LABEL_LOAD = "Load";
 
     private static final String LABEL_COPY = "Copy";
@@ -40,6 +41,7 @@ public class Settings {
     */
     public static final Map<String, Integer> FUNCTIONS_FILE = new HashMap<String, Integer>() {{
         put(LABEL_SAVE, KeyEvent.VK_S);
+        put(LABEL_SAVE_AS, KeyEvent.VK_S);
         put(LABEL_LOAD, KeyEvent.VK_L);
         put(LABEL_EXIT, KeyEvent.VK_ESCAPE);
     }};

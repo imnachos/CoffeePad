@@ -20,6 +20,7 @@ public class Paste extends Command {
     public void undoAction(ActionEvent event){
         System.out.println("RunUndo PASTE " + caretPosition + "-" + caretPosition + text.length());
         Editor.canvas.replaceRange("", caretPosition, caretPosition + text.length());
+
     }
 
 }

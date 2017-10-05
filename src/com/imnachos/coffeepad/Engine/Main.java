@@ -4,9 +4,10 @@ import java.awt.*;
 
 public class Main{
 
+    public static Editor editor;
     public static void main(String[] args) {
         calculateWindowSize();
-        new Editor();
+        editor = new Editor();
     }
 
     private static void calculateWindowSize(){

@@ -21,10 +21,10 @@ public class Editor extends JFrame implements ActionListener{
     private JMenu MENU_EDIT;
 
     //Text utils
-    public static String clipboard;
-    public static JTextArea canvas;
-    public static CommandManager commandManager;
-    public static UndoManager undoManager;
+    public String clipboard;
+    public JTextArea canvas;
+    public CommandManager commandManager;
+    public UndoManager undoManager;
 
     /*
         Initialization of the text editor.
@@ -48,10 +48,14 @@ public class Editor extends JFrame implements ActionListener{
 
         canvas = new JTextArea();
         topBar = new JMenuBar();
+
         scrollbar = new JScrollPane(canvas);
+        scrollbar.setBorder(null);
+
 
         canvas.setLineWrap(true);
         canvas.setWrapStyleWord(true);
+        canvas.setBorder(null);
 
         MENU_FILE = new JMenu(Settings.LABEL_FILE);
         buildMenu(MENU_FILE, Settings.FUNCTIONS_FILE);
@@ -99,6 +103,11 @@ public class Editor extends JFrame implements ActionListener{
         });
     }
 
+
+    public boolean isDocumentEmpty(){
+        return this.canvas.getText().isEmpty();
+    }
+
     /*
         Implementation of actionPerformed method.
      */
@@ -108,5 +117,7 @@ public class Editor extends JFrame implements ActionListener{
         item.getAction().actionPerformed(event);
 
     }
+
+
 }
 
