@@ -8,22 +8,30 @@ import java.util.Map;
 public class Settings {
 
     public static final JFileChooser userDir = new JFileChooser(System.getProperty("user.dir"));
+
     public static final String DEFAULT_TITLE = "Untitled";
+
     public static final int DEFAULT_WINDOW_HEIGHT = 600;
     public static final int DEFAULT_WINDOW_WIDTH = 800;
+
+    public static int WINDOW_HEIGHT;
+    public static int WINDOW_WIDTH;
 
     public static final String LABEL_FILE = "File";
     public static final String LABEL_EDIT = "Edit";
 
-    public static final String LABEL_SAVE = "Save";
-    public static final String LABEL_LOAD = "Load";
+    private static final String LABEL_SAVE = "Save";
+    private static final String LABEL_LOAD = "Load";
 
-    public static final String LABEL_COPY = "Copy";
-    public static final String LABEL_CUT = "Cut";
-    public static final String LABEL_PASTE = "Paste";
-    public static final String LABEL_SELECT = "Select all";
+    private static final String LABEL_COPY = "Copy";
+    private static final String LABEL_CUT = "Cut";
+    private static final String LABEL_PASTE = "Paste";
+    private static final String LABEL_SELECT = "Select all";
 
-    public static final String LABEL_EXIT = "Exit";
+    private static final String LABEL_UNDO  = "Undo";
+    private static final String LABEL_REDO = "Redo";
+
+    private static final String LABEL_EXIT = "Exit";
 
     public static final String WINDOW_ICON = "data/images/icon.png";
 
@@ -40,6 +48,9 @@ public class Settings {
         Edit menu function shortcuts.
      */
     public static final Map<String, Integer> FUNCTIONS_EDIT = new HashMap<String, Integer>() {{
+        put(LABEL_UNDO, KeyEvent.VK_Z);
+        put(LABEL_REDO, KeyEvent.VK_Y);
+
         put(LABEL_COPY, KeyEvent.VK_C);
         put(LABEL_CUT, KeyEvent.VK_X);
         put(LABEL_PASTE, KeyEvent.VK_V);

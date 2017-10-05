@@ -1,9 +1,8 @@
-package com.imnachos.coffeepad.Functions;
+package com.imnachos.coffeepad.Commands;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class Load extends Function {
+public class Save extends Command {
 
     public void actionPerformed(ActionEvent event){
 
@@ -12,5 +11,4 @@ public class Load extends Function {
     public void undoAction(ActionEvent event){
 
     }
-
 }

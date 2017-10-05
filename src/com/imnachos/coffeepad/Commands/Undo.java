@@ -1,14 +1,15 @@
-package com.imnachos.coffeepad.Functions;
+package com.imnachos.coffeepad.Commands;
 
 import com.imnachos.coffeepad.Engine.Editor;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class Copy extends Function {
+public class Undo extends Command {
 
     public void actionPerformed(ActionEvent event){
-        Editor.clipboard = Editor.canvas.getSelectedText();
+        System.out.println("UNDO TRIGGERED.");
+        Editor.commandManager.undo();
+
     }
 
     public void undoAction(ActionEvent event){

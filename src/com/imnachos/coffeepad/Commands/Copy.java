@@ -1,18 +1,16 @@
-package com.imnachos.coffeepad.Functions;
+package com.imnachos.coffeepad.Commands;
 
 import com.imnachos.coffeepad.Engine.Editor;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class Paste extends Function{
+public class Copy extends Command {
 
     public void actionPerformed(ActionEvent event){
-        Editor.canvas.insert(Editor.clipboard, Editor.canvas.getCaretPosition());
+        Editor.clipboard = Editor.canvas.getSelectedText();
     }
 
     public void undoAction(ActionEvent event){
 
     }
-
 }

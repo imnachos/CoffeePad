@@ -1,15 +1,15 @@
-package com.imnachos.coffeepad.Functions;
+package com.imnachos.coffeepad.Commands;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class Save extends Function{
+public class Exit extends Command {
 
     public void actionPerformed(ActionEvent event){
-
+        System.exit(0);
     }
 
     public void undoAction(ActionEvent event){
 
     }
+
 }

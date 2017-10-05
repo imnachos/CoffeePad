@@ -1,9 +1,11 @@
 package com.imnachos.coffeepad.Engine;
 
+import com.imnachos.coffeepad.Commands.Command;
 import com.imnachos.coffeepad.Util.CommandManager;
 import com.imnachos.coffeepad.Util.LogManager;
 
 import javax.swing.*;
+import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Map;
@@ -15,12 +17,14 @@ public class Editor extends JFrame implements ActionListener{
     private JScrollPane scrollbar;
 
     //Menu
-    private JMenu MENU_FILE, MENU_EDIT;
+    private JMenu MENU_FILE;
+    private JMenu MENU_EDIT;
 
     //Text utils
     public static String clipboard;
     public static JTextArea canvas;
     public static CommandManager commandManager;
+    public static UndoManager undoManager;
 
     /*
         Initialization of the text editor.
@@ -29,10 +33,8 @@ public class Editor extends JFrame implements ActionListener{
         super(Settings.DEFAULT_TITLE);
         ImageIcon img = new ImageIcon(Settings.WINDOW_ICON);
         this.setIconImage(img.getImage());
-
         commandManager = new CommandManager();
-
-        setSize(Settings.DEFAULT_WINDOW_WIDTH, Settings.DEFAULT_WINDOW_HEIGHT);
+        setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container pane = getContentPane();
         pane.setLayout(new BorderLayout());
@@ -77,14 +79,18 @@ public class Editor extends JFrame implements ActionListener{
     private void buildMenu(JMenu menu, Map<String, Integer> functionMap){
         functionMap.forEach((key, value) -> {
             JMenuItem item = new JMenuItem(key);
-            String classPath = "com.imnachos.coffeepad.Functions." + key;
+            String classPath = "com.imnachos.coffeepad.Commands." + key;
             classPath = classPath.replaceAll("\\s+","");
-            item.addActionListener(this);
-            item.setAccelerator(KeyStroke.getKeyStroke(value, ActionEvent.CTRL_MASK));
-            item.setName(key);
             try{
-                Object action = Class.forName(classPath).newInstance();
-                item.setAction((AbstractAction) action);
+                Command action = (Command) Class.forName(classPath).newInstance();
+                item.setAction(action);
+                item.setAccelerator(KeyStroke.getKeyStroke(value, ActionEvent.CTRL_MASK));
+                item.setName(key);
+                item.setText(key);
+                Image iconImage = new ImageIcon("data/images/" + key + ".png").getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+                Icon icon = new ImageIcon(iconImage);
+                item.setIcon(icon);
+
             }catch(Exception e){
                 LogManager.printLog("Unhandled exception. Todo.");
                 e.printStackTrace();
