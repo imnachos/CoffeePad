@@ -1,6 +1,6 @@
 package com.imnachos.coffeepad.Windows;
 
-import com.imnachos.coffeepad.Engine.Main;
+import com.imnachos.coffeepad.Engine.Editor;
 import com.imnachos.coffeepad.Engine.Settings;
 
 import javax.swing.*;
@@ -30,18 +30,20 @@ public class SaveAs extends JFrame implements ActionListener {
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         int result = fileChooser.showOpenDialog(this);
 
-
-        PrintWriter pw = null;
-        try {
-            pw = new PrintWriter(new File());
-            pw.println(ta.getText());
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        } finally {
-            if(pw != null){
-                pw.close();
+        if(result != 0){
+            PrintWriter fileWriter = null;
+            try {
+                fileWriter = new PrintWriter(new File("/output.txt"));
+                fileWriter.println(Editor.canvas.getText());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                if(fileWriter != null){
+                    fileWriter.close();
+                }
             }
         }
+
     }
 
 

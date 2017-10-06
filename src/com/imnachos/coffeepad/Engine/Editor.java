@@ -21,10 +21,13 @@ public class Editor extends JFrame implements ActionListener{
     private JMenu MENU_EDIT;
 
     //Text utils
-    public String clipboard;
-    public JTextArea canvas;
-    public CommandManager commandManager;
-    public UndoManager undoManager;
+    public static String clipboard;
+    public static JTextArea canvas;
+    public static CommandManager commandManager;
+    public static UndoManager undoManager;
+
+    public SpinnerModel fontSizeElement;
+    public JSpinner fontSizeSelector;
 
     /*
         Initialization of the text editor.
@@ -47,11 +50,9 @@ public class Editor extends JFrame implements ActionListener{
         }
 
         canvas = new JTextArea();
-        topBar = new JMenuBar();
 
         scrollbar = new JScrollPane(canvas);
         scrollbar.setBorder(null);
-
 
         canvas.setLineWrap(true);
         canvas.setWrapStyleWord(true);
@@ -64,13 +65,28 @@ public class Editor extends JFrame implements ActionListener{
 
         //Create toolbars
 
-        toolbar = new JToolBar();
-        setJMenuBar(topBar);
+        toolbar = new JToolBar(0);
+
+        //Font size selector
+        fontSizeElement = new SpinnerNumberModel(12, 1, 72, 2);
+        fontSizeSelector = new JSpinner(fontSizeElement);
+        fontSizeSelector.setSize(20, 2);
+        fontSizeSelector.setToolTipText("font size");
+        fontSizeElement.addChangeListener(e -> fontSizeChange());
+        JLabel fontSizeLabel = new JLabel(Settings.LABEL_FONT_SIZE);
+        toolbar.add(fontSizeLabel, BorderLayout.CENTER);
+        toolbar.add(fontSizeSelector);
+
+        this.getContentPane().add(toolbar, BorderLayout.PAGE_START);
+
+        //File bar
+        topBar = new JMenuBar();
         topBar.add(MENU_FILE);
         topBar.add(MENU_EDIT);
+        setJMenuBar(topBar);
 
+        //Additional
         pane.add(scrollbar, BorderLayout.CENTER);
-        pane.add(toolbar, BorderLayout.SOUTH);
 
         clipboard = "";
 
@@ -103,6 +119,11 @@ public class Editor extends JFrame implements ActionListener{
         });
     }
 
+    private void fontSizeChange(){
+        Font font = new Font(canvas.getFont().getName(), 0, (int) fontSizeElement.getValue());
+        canvas.setFont(font);
+
+    }
 
     public boolean isDocumentEmpty(){
         return this.canvas.getText().isEmpty();

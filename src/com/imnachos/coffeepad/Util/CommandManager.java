@@ -20,7 +20,7 @@ public class CommandManager {
         public void undo() {
             if (undoStack.size() > 0) {
                 Command command = undoStack.remove(undoStack.size() - 1);
-                System.out.println("command: " + command.toString());
+                System.out.println("Undo command: " + command.toString());
                 command.undoAction(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
             }
         }
@@ -28,6 +28,7 @@ public class CommandManager {
         public void redo() {
             if (redoStack.size() > 0) {
                 Command command = redoStack.remove(redoStack.size() - 1);
+                System.out.println("Redo command: " + command.toString());
                 command.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
             }
         }

@@ -22,7 +22,7 @@ public class Settings {
 
     private static final String LABEL_SAVE = "Save";
     public static final String LABEL_SAVE_AS = "Save as";
-    private static final String LABEL_LOAD = "Load";
+    private static final String LABEL_OPEN = "Open";
 
     private static final String LABEL_COPY = "Copy";
     private static final String LABEL_CUT = "Cut";
@@ -34,6 +34,8 @@ public class Settings {
 
     private static final String LABEL_EXIT = "Exit";
 
+    public static final String LABEL_FONT_SIZE = "Font size: ";
+
     public static final String WINDOW_ICON = "data/images/icon.png";
 
     /*
@@ -42,7 +44,7 @@ public class Settings {
     public static final Map<String, Integer> FUNCTIONS_FILE = new HashMap<String, Integer>() {{
         put(LABEL_SAVE, KeyEvent.VK_S);
         put(LABEL_SAVE_AS, KeyEvent.VK_S);
-        put(LABEL_LOAD, KeyEvent.VK_L);
+        put(LABEL_OPEN, KeyEvent.VK_L);
         put(LABEL_EXIT, KeyEvent.VK_ESCAPE);
     }};
 
