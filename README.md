@@ -1,3 +1,5 @@
 # CoffeePad
 
-Minimalistic Java-based text editor.
+Minimalistic Java-based IDE.
+
+
