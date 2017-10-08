@@ -1,6 +1,6 @@
 package com.imnachos.coffeepad.Commands;
 
-import com.imnachos.coffeepad.Engine.Editor;
+import com.imnachos.coffeepad.Engine.Main;
 
 import java.awt.event.ActionEvent;
 
@@ -11,20 +11,20 @@ public class Cut extends Command {
     private int selectionEnd;
 
     public void actionPerformed(ActionEvent event){
-        if(Editor.canvas.getSelectedText() != null){
-            selectedText = Editor.canvas.getSelectedText();
-            Editor.clipboard = selectedText;
-            selectionStart = Editor.canvas.getSelectionStart();
-            selectionEnd = Editor.canvas.getSelectionEnd();
+        if(Main.editor.canvas.getSelectedText() != null){
+            selectedText = Main.editor.canvas.getSelectedText();
+            Main.editor.clipboard = selectedText;
+            selectionStart = Main.editor.canvas.getSelectionStart();
+            selectionEnd = Main.editor.canvas.getSelectionEnd();
 
-            Editor.canvas.replaceRange("", selectionStart, selectionEnd);
-            System.out.println("DO CUT " + selectedText + selectionStart + selectionEnd);
-            Editor.commandManager.addToUndoStack(this);
+            Main.editor.canvas.replaceRange("", selectionStart, selectionEnd);
+            System.out.println("Do CUT:  " + selectedText + " \n  Start: " +selectionStart + "\n  End: " + selectionEnd);
+            Main.editor.commandManager.addToUndoStack(this);
         }
     }
 
     public void undoAction(ActionEvent event){
-        System.out.println("RunUndo CUT " + selectedText + selectionStart + selectionEnd);
-        Editor.canvas.replaceRange(selectedText, selectionStart, selectionEnd);
+    	System.out.println("Undo CUT:  " + selectedText + " \n  Start: " +selectionStart + "\n  End: " + selectionEnd);
+    	Main.editor.canvas.replaceRange(selectedText, selectionStart, selectionEnd);
     }
 }

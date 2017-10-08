@@ -1,9 +1,11 @@
 package com.imnachos.coffeepad.Windows;
 
-import com.imnachos.coffeepad.Engine.Editor;
+import com.imnachos.coffeepad.Engine.Main;
 import com.imnachos.coffeepad.Engine.Settings;
+import com.imnachos.coffeepad.Util.FileManager;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,33 +17,20 @@ public class SaveAs extends JFrame implements ActionListener {
 
 
     public SaveAs(){
-        super(Settings.LABEL_SAVE_AS);
-        ImageIcon img = new ImageIcon(Settings.WINDOW_ICON);
-        this.setIconImage(img.getImage());
-        setSize(150, 100);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        Container pane = getContentPane();
-        pane.setLayout(new BorderLayout());
-        setVisible(true);
-
 
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        int result = fileChooser.showOpenDialog(this);
+        int choice = fileChooser.showSaveDialog(this);
 
-        if(result != 0){
-            PrintWriter fileWriter = null;
-            try {
-                fileWriter = new PrintWriter(new File("/output.txt"));
-                fileWriter.println(Editor.canvas.getText());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } finally {
-                if(fileWriter != null){
-                    fileWriter.close();
-                }
-            }
+        if(choice == JFileChooser.APPROVE_OPTION) {
+        	File outputFile = fileChooser.getSelectedFile();
+        	boolean wasFileSaved = FileManager.saveFile(outputFile, Main.editor.canvas.getText());
+        	
+        	if(wasFileSaved){
+        		Main.editor.setFileSaved(true);
+        		Main.editor.setTitle(outputFile.getName());
+        		Main.editor.setCurrentFile(outputFile);
+        	}
         }
 
     }

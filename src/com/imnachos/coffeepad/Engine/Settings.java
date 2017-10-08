@@ -1,8 +1,13 @@
 package com.imnachos.coffeepad.Engine;
 
 import javax.swing.*;
+
+import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Settings {
@@ -35,13 +40,18 @@ public class Settings {
     private static final String LABEL_EXIT = "Exit";
 
     public static final String LABEL_FONT_SIZE = "Font size: ";
+    public static final String LABEL_FONT = "Font: ";
 
     public static final String WINDOW_ICON = "data/images/icon.png";
+    
+    //public static final Font DEFAULT_FONT;
+    
+    public static final int DEFAULT_FONT_SIZE = 12;
 
     /*
         File menu function shortcuts.
     */
-    public static final Map<String, Integer> FUNCTIONS_FILE = new HashMap<String, Integer>() {{
+    public static final Map<String, Integer> FUNCTIONS_FILE = new LinkedHashMap<String, Integer>() {{
         put(LABEL_SAVE, KeyEvent.VK_S);
         put(LABEL_SAVE_AS, KeyEvent.VK_S);
         put(LABEL_OPEN, KeyEvent.VK_L);
@@ -51,7 +61,7 @@ public class Settings {
     /*
         Edit menu function shortcuts.
      */
-    public static final Map<String, Integer> FUNCTIONS_EDIT = new HashMap<String, Integer>() {{
+    public static final Map<String, Integer> FUNCTIONS_EDIT = new LinkedHashMap<String, Integer>() {{
         put(LABEL_UNDO, KeyEvent.VK_Z);
         put(LABEL_REDO, KeyEvent.VK_Y);
 
@@ -60,5 +70,7 @@ public class Settings {
         put(LABEL_PASTE, KeyEvent.VK_V);
         put(LABEL_SELECT, KeyEvent.VK_A);
     }};
+    
+    public static final String[] TEXT_OPTIONS = {"Bold", "Italic", "Underline"};
 
 }

@@ -1,15 +1,13 @@
 package com.imnachos.coffeepad.Commands;
 
-import com.imnachos.coffeepad.Engine.Editor;
-
 import java.awt.event.ActionEvent;
+
+import com.imnachos.coffeepad.Engine.Main;
 
 public class Redo extends Command {
 
     public void actionPerformed(ActionEvent event){
-        if(Editor.undoManager.canRedo()){
-            Editor.undoManager.redo();
-        }
+    	Main.editor.commandManager.redo();
     }
 
     public void undoAction(ActionEvent event){
