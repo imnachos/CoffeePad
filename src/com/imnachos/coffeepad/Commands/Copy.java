@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 public class Copy extends Command {
 
     public void actionPerformed(ActionEvent event){
-        if(Main.editor.canvas.getSelectedText() != null){
-        	Main.editor.clipboard = Main.editor.canvas.getSelectedText();
+        if(Main.editor.document.getSelectedText() != null){
+        	Main.editor.clipboard = Main.editor.document.getSelectedText();
         }
     }
 

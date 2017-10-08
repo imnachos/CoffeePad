@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 public class Selectall extends Command {
 
     public void actionPerformed(ActionEvent event){
-    	Main.editor.canvas.selectAll();
+    	Main.editor.document.selectAll();
     }
 
     public void undoAction(ActionEvent event){

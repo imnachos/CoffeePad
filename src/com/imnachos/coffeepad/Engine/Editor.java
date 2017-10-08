@@ -4,7 +4,6 @@ import com.imnachos.coffeepad.Commands.Command;
 import com.imnachos.coffeepad.Commands.Saveas;
 import com.imnachos.coffeepad.Util.CommandManager;
 import com.imnachos.coffeepad.Util.LogManager;
-import com.imnachos.coffeepad.Windows.TextToolbar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,12 +25,11 @@ public class Editor extends JFrame implements ActionListener{
     public String clipboard;
     
     //JTextPane
-    public JTextArea canvas;
-    public CommandManager commandManager;
-    //public UndoManager undoManager;
+    public Document document;
     
     private boolean isFileSaved;
     private File currentFile;
+    public CommandManager commandManager;
     
     public Font font;
     public int fontSize;
@@ -45,7 +43,6 @@ public class Editor extends JFrame implements ActionListener{
         isFileSaved = false;
         ImageIcon img = new ImageIcon(Settings.WINDOW_ICON);
         this.setIconImage(img.getImage());
-        commandManager = new CommandManager();
         setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
         setOnCloseProperty();
         Container pane = getContentPane();
@@ -58,23 +55,17 @@ public class Editor extends JFrame implements ActionListener{
             e.printStackTrace();
         }
 
-        canvas = new JTextArea();
-
-        scrollbar = new JScrollPane(canvas);
+        document = new Document(this);
+        commandManager = new CommandManager();
+        scrollbar = new JScrollPane(document);
         scrollbar.setBorder(null);
-
-        canvas.setLineWrap(true);
-        canvas.setWrapStyleWord(true);
-        canvas.setBorder(null);
+        document.setBorder(null);
 
         MENU_FILE = new JMenu(Settings.LABEL_FILE);
         buildMenu(MENU_FILE, Settings.FUNCTIONS_FILE);
         MENU_EDIT = new JMenu(Settings.LABEL_EDIT);
         buildMenu(MENU_EDIT, Settings.FUNCTIONS_EDIT);
 
-        //Create toolbar
-        
-        getContentPane().add(new TextToolbar(this).toolbar, BorderLayout.PAGE_START);
 
         //File bar
         topBar = new JMenuBar();
@@ -88,11 +79,9 @@ public class Editor extends JFrame implements ActionListener{
         clipboard = "";
 
         //Text stuff
-        
-        canvas.setFont(new Font(canvas.getFont().getName(), 0, Settings.DEFAULT_FONT_SIZE));
+
         fontSize = Settings.DEFAULT_FONT_SIZE;
-        setCursorStyle(Font.PLAIN);
-        
+
         setVisible(true);
     }
       
@@ -158,17 +147,7 @@ public class Editor extends JFrame implements ActionListener{
     	    }
     	});
     }
-    
-	public int getCursorStyle() {
-		return cursorStyle;
-	}
 
-	public void setCursorStyle(int cursorStyle) {
-		Font font = new Font(canvas.getFont().getName(), cursorStyle, this.fontSize);
-		canvas.setFont(font);
-		this.cursorStyle = cursorStyle;
-	}
-    
     public boolean isFileSaved() {
 		return isFileSaved;
 	}
@@ -186,7 +165,7 @@ public class Editor extends JFrame implements ActionListener{
 	}
     
     public boolean isDocumentEmpty(){
-        return this.canvas.getText().isEmpty();
+        return this.document.getText().isEmpty();
     }
 
     

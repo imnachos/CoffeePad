@@ -2,7 +2,7 @@ package com.imnachos.coffeepad.Engine;
 
 import javax.swing.*;
 
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,13 +34,13 @@ public class Settings {
     private static final String LABEL_PASTE = "Paste";
     private static final String LABEL_SELECT = "Select all";
 
-    private static final String LABEL_UNDO  = "Undo";
+    private static final String LABEL_UNDO = "Undo";
     private static final String LABEL_REDO = "Redo";
 
     private static final String LABEL_EXIT = "Exit";
 
-    public static final String LABEL_FONT_SIZE = "Font size: ";
-    public static final String LABEL_FONT = "Font: ";
+    public static final Color DEFAULT_BACKGROUND = new Color(43, 43,43 );
+    public static final Color DEFAULT_COLOR = new Color(168, 182,173 );
 
     public static final String WINDOW_ICON = "data/images/icon.png";
     
@@ -70,7 +70,6 @@ public class Settings {
         put(LABEL_PASTE, KeyEvent.VK_V);
         put(LABEL_SELECT, KeyEvent.VK_A);
     }};
-    
-    public static final String[] TEXT_OPTIONS = {"Bold", "Italic", "Underline"};
+
 
 }

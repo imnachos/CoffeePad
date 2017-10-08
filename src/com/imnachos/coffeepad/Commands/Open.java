@@ -19,7 +19,7 @@ public class Open extends Command {
             File selectedFile = fileChooser.getSelectedFile();
 
             if(Main.editor.isDocumentEmpty() && selectedFile.isFile()){            	
-            	Main.editor.canvas.setText(FileManager.openFile(selectedFile));
+            	Main.editor.document.setText(FileManager.openFile(selectedFile));
                 Main.editor.setTitle(selectedFile.getName());
             }else{
             	

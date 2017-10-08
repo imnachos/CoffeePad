@@ -24,7 +24,7 @@ public class SaveAs extends JFrame implements ActionListener {
 
         if(choice == JFileChooser.APPROVE_OPTION) {
         	File outputFile = fileChooser.getSelectedFile();
-        	boolean wasFileSaved = FileManager.saveFile(outputFile, Main.editor.canvas.getText());
+        	boolean wasFileSaved = FileManager.saveFile(outputFile, Main.editor.document.getText());
         	
         	if(wasFileSaved){
         		Main.editor.setFileSaved(true);
