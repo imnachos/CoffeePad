@@ -7,9 +7,9 @@ import java.awt.event.ActionEvent;
 public class Copy extends Command {
 
     public void actionPerformed(ActionEvent event){
-        if(Main.editor.document.getSelectedText() != null){
+       /* if(Main.editor.document.getSelectedText() != null){
         	Main.editor.clipboard = Main.editor.document.getSelectedText();
-        }
+        }*/
     }
 
     public void undoAction(ActionEvent event){

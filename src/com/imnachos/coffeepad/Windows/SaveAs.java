@@ -17,7 +17,7 @@ public class SaveAs extends JFrame implements ActionListener {
 
 
     public SaveAs(){
-
+/*/
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         int choice = fileChooser.showSaveDialog(this);
@@ -33,7 +33,7 @@ public class SaveAs extends JFrame implements ActionListener {
         	}
         }
 
-    }
+    */}
 
 
     @Override

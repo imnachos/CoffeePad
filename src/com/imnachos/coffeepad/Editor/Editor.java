@@ -1,7 +1,8 @@
-package com.imnachos.coffeepad.Engine;
+package com.imnachos.coffeepad.Editor;
 
 import com.imnachos.coffeepad.Commands.Command;
 import com.imnachos.coffeepad.Commands.Saveas;
+import com.imnachos.coffeepad.Engine.Settings;
 import com.imnachos.coffeepad.Util.CommandManager;
 import com.imnachos.coffeepad.Util.LogManager;
 
@@ -15,8 +16,6 @@ public class Editor extends JFrame implements ActionListener{
 
     private JMenuBar topBar;
 
-    private JScrollPane scrollbar;
-
     //Menu
     private JMenu MENU_FILE;
     private JMenu MENU_EDIT;
@@ -25,15 +24,15 @@ public class Editor extends JFrame implements ActionListener{
     public String clipboard;
     
     //JTextPane
-    public Document document;
+    public TextContainer textContainer;
+    private JScrollPane scrollbar;
+    private JPanel textPanel;
     
     private boolean isFileSaved;
     private File currentFile;
     public CommandManager commandManager;
-    
-    public Font font;
+
     public int fontSize;
-    private int cursorStyle;
 
 	/*
         Initialization of the text editor.
@@ -45,8 +44,10 @@ public class Editor extends JFrame implements ActionListener{
         this.setIconImage(img.getImage());
         setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
         setOnCloseProperty();
-        Container pane = getContentPane();
-        pane.setLayout(new BorderLayout());
+        Container contentPane = getContentPane();
+        contentPane.setLayout(new CardLayout());
+        contentPane.setBackground(Settings.DEFAULT_BACKGROUND);
+        contentPane.setForeground(Settings.DEFAULT_BACKGROUND);
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -55,12 +56,18 @@ public class Editor extends JFrame implements ActionListener{
             e.printStackTrace();
         }
 
-        document = new Document(this);
         commandManager = new CommandManager();
-        scrollbar = new JScrollPane(document);
-        scrollbar.setBorder(null);
-        document.setBorder(null);
 
+        textPanel = new JPanel();
+        textPanel.setBackground(Settings.DEFAULT_BACKGROUND);
+        textContainer = new TextContainer();
+        scrollbar = new JScrollPane(textContainer);
+        scrollbar.setBorder(null);
+        textPanel.add(textContainer);
+        add(textPanel, BorderLayout.WEST);
+
+
+        //Menu items
         MENU_FILE = new JMenu(Settings.LABEL_FILE);
         buildMenu(MENU_FILE, Settings.FUNCTIONS_FILE);
         MENU_EDIT = new JMenu(Settings.LABEL_EDIT);
@@ -74,7 +81,6 @@ public class Editor extends JFrame implements ActionListener{
         setJMenuBar(topBar);
 
         //Additional
-        pane.add(scrollbar, BorderLayout.CENTER);
 
         clipboard = "";
 
@@ -164,9 +170,7 @@ public class Editor extends JFrame implements ActionListener{
 		this.currentFile = currentFile;
 	}
     
-    public boolean isDocumentEmpty(){
-        return this.document.getText().isEmpty();
-    }
+
 
     
 
