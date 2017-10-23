@@ -3,6 +3,7 @@ package com.imnachos.coffeepad.Editor;
 import com.imnachos.coffeepad.Commands.Command;
 import com.imnachos.coffeepad.Commands.Saveas;
 import com.imnachos.coffeepad.Engine.Settings;
+import com.imnachos.coffeepad.Listener.TextListener;
 import com.imnachos.coffeepad.Util.CommandManager;
 import com.imnachos.coffeepad.Util.LogManager;
 
@@ -26,6 +27,10 @@ public class Editor extends JFrame implements ActionListener{
     //JTextPane
     public TextContainer textContainer;
     private JScrollPane scrollbar;
+
+    /*
+        Panel that contains the TextContainer. It provides de background color.
+     */
     private JPanel textPanel;
     
     private boolean isFileSaved;
@@ -40,13 +45,12 @@ public class Editor extends JFrame implements ActionListener{
     public Editor(){
         super(Settings.DEFAULT_TITLE);
         isFileSaved = false;
-        ImageIcon img = new ImageIcon(Settings.WINDOW_ICON);
-        this.setIconImage(img.getImage());
+        ImageIcon windowIcon = new ImageIcon(Settings.WINDOW_ICON);
+        this.setIconImage(windowIcon.getImage());
         setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
         setOnCloseProperty();
         Container contentPane = getContentPane();
         contentPane.setLayout(new CardLayout());
-        contentPane.setBackground(Settings.DEFAULT_BACKGROUND);
         contentPane.setForeground(Settings.DEFAULT_BACKGROUND);
 
         try {
@@ -58,12 +62,12 @@ public class Editor extends JFrame implements ActionListener{
 
         commandManager = new CommandManager();
 
-        textPanel = new JPanel();
+        textPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
         textPanel.setBackground(Settings.DEFAULT_BACKGROUND);
         textContainer = new TextContainer();
         scrollbar = new JScrollPane(textContainer);
         scrollbar.setBorder(null);
-        textPanel.add(textContainer);
+        textPanel.add(textContainer, BorderLayout.WEST);
         add(textPanel, BorderLayout.WEST);
 
 
