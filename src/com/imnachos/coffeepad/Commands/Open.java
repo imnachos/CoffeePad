@@ -11,7 +11,7 @@ import java.io.File;
 public class Open extends Command {
 
     public void actionPerformed(ActionEvent event){
-        JFileChooser fileChooser = new JFileChooser();
+        /*JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         int choice = fileChooser.showOpenDialog(null);
 
@@ -27,7 +27,7 @@ public class Open extends Command {
 
             System.out.println("Selected file: " + selectedFile.getAbsolutePath());
         }
-    }
+    */}
 
     public void undoAction(ActionEvent event){
 
