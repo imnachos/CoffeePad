@@ -12,7 +12,6 @@ public class Main{
     public static void main(String[] args) {
         calculateWindowSize();
         editor = new Editor();
-        LanguageStyleManager.loadStyles();
     }
 
     private static void calculateWindowSize(){

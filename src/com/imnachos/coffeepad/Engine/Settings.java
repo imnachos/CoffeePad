@@ -24,6 +24,7 @@ public class Settings {
 
     public static final String LABEL_FILE = "File";
     public static final String LABEL_EDIT = "Edit";
+    public static final String LABEL_STYLE = "Style";
 
     private static final String LABEL_SAVE = "Save";
     public static final String LABEL_SAVE_AS = "Save as";

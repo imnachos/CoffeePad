@@ -1,16 +1,22 @@
 package com.imnachos.coffeepad.Editor;
 
+import com.imnachos.coffeepad.Commands.ChangeStyle;
 import com.imnachos.coffeepad.Commands.Command;
 import com.imnachos.coffeepad.Commands.Saveas;
 import com.imnachos.coffeepad.Engine.Settings;
 import com.imnachos.coffeepad.Listener.TextListener;
+import com.imnachos.coffeepad.Style.LanguageStyle;
+import com.imnachos.coffeepad.Style.LanguageStyleManager;
 import com.imnachos.coffeepad.Util.CommandManager;
 import com.imnachos.coffeepad.Util.LogManager;
 
+import javax.sound.sampled.Line;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Editor extends JFrame implements ActionListener{
@@ -20,6 +26,7 @@ public class Editor extends JFrame implements ActionListener{
     //Menu
     private JMenu MENU_FILE;
     private JMenu MENU_EDIT;
+    private JMenu MENU_STYLE;
 
     //Text util
     public String clipboard;
@@ -38,6 +45,10 @@ public class Editor extends JFrame implements ActionListener{
     public CommandManager commandManager;
 
     public int fontSize;
+
+    public LanguageStyle currentLanguageStyle;
+    public Map<String, LanguageStyle> styledLanguages;
+
 
 	/*
         Initialization of the text editor.
@@ -59,7 +70,8 @@ public class Editor extends JFrame implements ActionListener{
             LogManager.printLog("Unhandled exception. Todo.");
             e.printStackTrace();
         }
-
+        styledLanguages = new HashMap<String, LanguageStyle>();
+        styledLanguages = LanguageStyleManager.loadStyles();
         commandManager = new CommandManager();
 
         textPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
@@ -67,6 +79,8 @@ public class Editor extends JFrame implements ActionListener{
         textContainer = new TextContainer();
         scrollbar = new JScrollPane(textContainer);
         scrollbar.setBorder(null);
+        TextLineNumber numbering = new TextLineNumber(textContainer);
+        textContainer.add(numbering);
         textPanel.add(textContainer, BorderLayout.WEST);
         add(textPanel, BorderLayout.WEST);
 
@@ -76,12 +90,15 @@ public class Editor extends JFrame implements ActionListener{
         buildMenu(MENU_FILE, Settings.FUNCTIONS_FILE);
         MENU_EDIT = new JMenu(Settings.LABEL_EDIT);
         buildMenu(MENU_EDIT, Settings.FUNCTIONS_EDIT);
+        MENU_STYLE = new JMenu(Settings.LABEL_STYLE);
+        buildStyleMenu(MENU_STYLE, styledLanguages);
 
 
         //File bar
         topBar = new JMenuBar();
         topBar.add(MENU_FILE);
         topBar.add(MENU_EDIT);
+        topBar.add(MENU_STYLE);
         setJMenuBar(topBar);
 
         //Additional
@@ -114,7 +131,28 @@ public class Editor extends JFrame implements ActionListener{
                 item.setIcon(icon);
 
             }catch(Exception e){
-                LogManager.printLog("Unhandled exception. Todo.");
+                LogManager.printLog("Unhandled exception. Todo."); //TODO EXCEPTION
+                e.printStackTrace();
+            }
+            menu.add(item);
+        });
+    }
+
+
+    /*
+        Construct menus from a given map for a JMenu
+     */
+    private void buildStyleMenu(JMenu menu, Map<String, LanguageStyle> languageList){
+        languageList.forEach((value, key) -> {
+            JMenuItem item = new JMenuItem(key.languageName);
+            try{
+                Command action = ChangeStyle.class.newInstance();
+                item.setAction(action);
+                item.setName(key.languageName);
+                item.setText(key.languageName);
+
+            }catch(Exception e){
+                LogManager.printLog("Unhandled exception. Todo."); //TODO EXCEPTION
                 e.printStackTrace();
             }
             menu.add(item);
@@ -158,6 +196,10 @@ public class Editor extends JFrame implements ActionListener{
     	});
     }
 
+    public void addLanguageStyle(LanguageStyle style){
+        styledLanguages.putIfAbsent(style.languageName, style);
+    }
+
     public boolean isFileSaved() {
 		return isFileSaved;
 	}
@@ -173,10 +215,19 @@ public class Editor extends JFrame implements ActionListener{
 	public void setCurrentFile(File currentFile) {
 		this.currentFile = currentFile;
 	}
-    
+
+    public LanguageStyle getCurrentLanguageStyle() {
+        return currentLanguageStyle;
+    }
+
+    public void setCurrentLanguageStyle(LanguageStyle currentLanguageStyle) {
+        this.currentLanguageStyle = currentLanguageStyle;
+        textContainer.textListener.setCurrentStyle(currentLanguageStyle);
+    }
 
 
-    
+
+
 
 }
 
