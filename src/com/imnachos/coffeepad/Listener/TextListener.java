@@ -49,16 +49,24 @@ public class TextListener extends DocumentFilter {
     @Override
     public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
         super.remove(fb, offset, length);
+        System.out.println("remove.");
     }
 
     //TODO EXCEPTIONS
 
     @Override
     public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-
         super.replace(fb, offset, length, text, attrs);
 
-        currentStyle.keywordColors.forEach((key, value) -> {
+        processAutoComplete(fb, offset, length, text, attrs);
+
+        setTextStyle(fb, offset, length, text, attrs);
+
+    }
+
+    private void setTextStyle(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws  BadLocationException{
+
+        currentStyle.keywordColors.forEach((key, color) -> {
             int startIndex = offset - key.length();
             if (startIndex >= 0) {
 
@@ -69,7 +77,7 @@ public class TextListener extends DocumentFilter {
                     if (currentStyle.hasStyleForKey(last)) {
 
                         //TODO USE STYLES
-                        AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, value);
+                        AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, color);
                         styledDocument.setCharacterAttributes(startIndex, startIndex + key.length(), styleAttributes, false);
                     }
                 }catch(Exception exception){
@@ -82,6 +90,18 @@ public class TextListener extends DocumentFilter {
 
     }
 
+    private void processAutoComplete(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws  BadLocationException{
+
+        if(text.equals("{")){
+            super.replace(fb, offset + 1, length, "}", attrs);
+            textPane.setCaretPosition(offset + 1);
+        }
+        if(text.equals("(")){
+            super.replace(fb, offset + 1, length, ")", attrs);
+            textPane.setCaretPosition(offset + 1);
+        }
+
+    }
     
     public void setCurrentStyle(LanguageStyle currentStyle) {
         this.currentStyle = currentStyle;
@@ -89,17 +109,16 @@ public class TextListener extends DocumentFilter {
 
         System.out.println("setCurrentStyle to: " + currentStyle.languageName);
         currentStyle.keywordColors.forEach((key, value) -> {
-            /*
-            Style defaultStyle = styleContext.getStyle(StyleContext.DEFAULT_STYLE);
-           Style style = textPane.addStyle(key, defaultStyle);
-           StyleConstants.setForeground(style, value);
-           StyleConstants.setFontFamily(style, Font.MONOSPACED);
-           StyleConstants.setFontSize(style, 14);
-           styleContext.addStyle(key, style);
 
-           AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, value);
-           style.setResolveParent(styleAttributes);
-        */
+        Style defaultStyle = styleContext.getStyle(StyleContext.DEFAULT_STYLE);
+        Style style = textPane.addStyle(key, defaultStyle);
+        StyleConstants.setForeground(style, value);
+        StyleConstants.setFontFamily(style, Font.MONOSPACED);
+        StyleConstants.setFontSize(style, 14);
+        styleContext.addStyle(key, style);
+
+        AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, value);
+        style.setResolveParent(styleAttributes);
 
         });
 

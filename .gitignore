@@ -1,11 +1,4 @@
 
 *.xml
 *.class
-*.class
-*.class
-*.class
-*.class
-*.class
-*.xml
-*.class
-*.xml
+out/

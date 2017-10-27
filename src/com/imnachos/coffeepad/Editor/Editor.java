@@ -76,11 +76,12 @@ public class Editor extends JFrame implements ActionListener{
 
         textPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
         textPanel.setBackground(Settings.DEFAULT_BACKGROUND);
+
         textContainer = new TextContainer();
         scrollbar = new JScrollPane(textContainer);
         scrollbar.setBorder(null);
-        TextLineNumber numbering = new TextLineNumber(textContainer);
-        textContainer.add(numbering);
+        //TextLineNumber numbering = new TextLineNumber(textContainer);
+        //textContainer.add(numbering);
         textPanel.add(textContainer, BorderLayout.WEST);
         add(textPanel, BorderLayout.WEST);
 
