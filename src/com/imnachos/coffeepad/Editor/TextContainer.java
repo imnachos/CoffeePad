@@ -39,7 +39,9 @@ public class TextContainer extends JTextPane {
 
     }
 
-
+    public boolean isDocumentEmpty(){
+        return this.getText().isEmpty();
+    }
 
 
 

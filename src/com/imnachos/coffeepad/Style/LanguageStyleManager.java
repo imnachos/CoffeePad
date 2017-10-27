@@ -89,8 +89,5 @@ public class LanguageStyleManager {
 
     }
 
-    public static void setStyleForLanguage(TextContainer textContainer){
 
-
-    }
 }

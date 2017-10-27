@@ -73,7 +73,6 @@ public class TextListener extends DocumentFilter {
                 try {
                     String last = fb.getDocument().getText(startIndex, key.length()).trim();
 
-                    //TODO EXCEPTIONS
                     if (currentStyle.hasStyleForKey(last)) {
 
                         //TODO USE STYLES
@@ -108,17 +107,18 @@ public class TextListener extends DocumentFilter {
         styleContext = new StyleContext();
 
         System.out.println("setCurrentStyle to: " + currentStyle.languageName);
-        currentStyle.keywordColors.forEach((key, value) -> {
 
-        Style defaultStyle = styleContext.getStyle(StyleContext.DEFAULT_STYLE);
-        Style style = textPane.addStyle(key, defaultStyle);
-        StyleConstants.setForeground(style, value);
-        StyleConstants.setFontFamily(style, Font.MONOSPACED);
-        StyleConstants.setFontSize(style, 14);
-        styleContext.addStyle(key, style);
+            currentStyle.keywordColors.forEach((key, value) -> {
 
-        AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, value);
-        style.setResolveParent(styleAttributes);
+            Style defaultStyle = styleContext.getStyle(StyleContext.DEFAULT_STYLE);
+            Style style = textPane.addStyle(key, defaultStyle);
+            StyleConstants.setForeground(style, value);
+            StyleConstants.setFontFamily(style, Font.MONOSPACED);
+            StyleConstants.setFontSize(style, 14);
+            styleContext.addStyle(key, style);
+
+            AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, value);
+            style.setResolveParent(styleAttributes);
 
         });
 

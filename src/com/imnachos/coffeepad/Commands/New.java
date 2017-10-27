@@ -1,16 +1,16 @@
 package com.imnachos.coffeepad.Commands;
 
-import com.imnachos.coffeepad.Engine.Main;
-
 import java.awt.event.ActionEvent;
 
-public class Selectall extends Command {
+public class New extends Command {
 
     public void actionPerformed(ActionEvent event){
-    	Main.editor.textContainer.selectAll();
+
+        System.exit(0);
     }
 
     public void undoAction(ActionEvent event){
 
     }
+
 }

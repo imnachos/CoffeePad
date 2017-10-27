@@ -17,14 +17,14 @@ public class SaveAs extends JFrame implements ActionListener {
 
 
     public SaveAs(){
-/*/
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         int choice = fileChooser.showSaveDialog(this);
 
         if(choice == JFileChooser.APPROVE_OPTION) {
         	File outputFile = fileChooser.getSelectedFile();
-        	boolean wasFileSaved = FileManager.saveFile(outputFile, Main.editor.document.getText());
+        	boolean wasFileSaved = FileManager.saveFile(outputFile, Main.editor.textContainer.getText());
         	
         	if(wasFileSaved){
         		Main.editor.setFileSaved(true);
@@ -33,7 +33,7 @@ public class SaveAs extends JFrame implements ActionListener {
         	}
         }
 
-    */}
+    }
 
 
     @Override

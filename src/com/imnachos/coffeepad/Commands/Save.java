@@ -8,13 +8,13 @@ import com.imnachos.coffeepad.Util.FileManager;
 public class Save extends Command {
 
     public void actionPerformed(ActionEvent event){
-    	/*
+
     	if(!Main.editor.isFileSaved()){
     		new Saveas();
     	}else{
-    		FileManager.saveFile(Main.editor.getCurrentFile(), Main.editor.document.getText());
+    		FileManager.saveFile(Main.editor.getCurrentFile(), Main.editor.textContainer.getText());
     	}
-    */}
+    }
 
     public void undoAction(ActionEvent event){
 
