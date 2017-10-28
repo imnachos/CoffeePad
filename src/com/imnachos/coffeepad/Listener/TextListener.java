@@ -5,6 +5,8 @@ import com.imnachos.coffeepad.Editor.TextContainer;
 import com.imnachos.coffeepad.Engine.Settings;
 import com.imnachos.coffeepad.Style.LanguageStyle;
 
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
 import java.awt.*;
 import java.util.*;
@@ -15,7 +17,7 @@ public class TextListener extends DocumentFilter {
     private TextContainer textPane;
     private StyledDocument styledDocument;
     
-    private LanguageStyle currentStyle;
+    public LanguageStyle currentStyle;
     private StyleContext styleContext;
 
     public TextListener (TextContainer container){
@@ -70,11 +72,14 @@ public class TextListener extends DocumentFilter {
             int startIndex = offset - key.length();
             if (startIndex >= 0) {
 
+
                 try {
                     String last = fb.getDocument().getText(startIndex, key.length()).trim();
 
                     if (currentStyle.hasStyleForKey(last)) {
 
+
+                        System.out.println(key + ", "+ color);
                         //TODO USE STYLES
                         AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, color);
                         styledDocument.setCharacterAttributes(startIndex, startIndex + key.length(), styleAttributes, false);
@@ -125,7 +130,54 @@ public class TextListener extends DocumentFilter {
 
     }
 
+/*
+    @Override
+    public void insertUpdate(DocumentEvent documentEvent) {
+        checkLastWord();
+    }
 
-    
+    @Override
+    public void removeUpdate(DocumentEvent documentEvent) {
+        checkLastWord();
+    }
 
+    @Override
+    public void changedUpdate(DocumentEvent documentEvent) {
+        String lastWord = checkLastWord();
+        //int startIndex = offset - key.length();
+
+        if(!lastWord.equals(" ")){
+            Color wordStyle = currentStyle.getStyleForKey(lastWord);
+            AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, wordStyle);
+           // styledDocument.setCharacterAttributes(startIndex, startIndex + key.length(), styleAttributes, false);
+
+        }
+    }
+*/
+    private String checkLastWord() {
+
+        String lastWord = "";
+        int wordStart;
+        int wordEnd;
+        try {
+            wordStart = Utilities.getWordStart(textPane, textPane.getCaretPosition());
+            wordEnd = Utilities.getWordEnd(textPane, textPane.getCaretPosition());
+            lastWord = textPane.getDocument().getText(wordStart, wordEnd - wordStart);
+
+            System.out.println("PRE - Last word: " + lastWord);
+
+            if(lastWord.equals(" ")){
+                wordStart = Utilities.getWordStart(textPane, textPane.getCaretPosition() -1);
+                wordEnd = Utilities.getWordEnd(textPane, textPane.getCaretPosition() -1 );
+                lastWord = textPane.getDocument().getText(wordStart, wordEnd - wordStart);
+                System.out.println("Last word: " + lastWord);
+            }
+
+        } catch (Exception e) {
+            //TODO EXCEPTION
+            e.printStackTrace();
+        }
+
+        return lastWord;
+    }
 }

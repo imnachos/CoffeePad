@@ -4,18 +4,16 @@ import com.imnachos.coffeepad.Commands.ChangeStyle;
 import com.imnachos.coffeepad.Commands.Command;
 import com.imnachos.coffeepad.Commands.Saveas;
 import com.imnachos.coffeepad.Engine.Settings;
-import com.imnachos.coffeepad.Listener.TextListener;
+import com.imnachos.coffeepad.Listener.FormatKeyListener;
 import com.imnachos.coffeepad.Style.LanguageStyle;
 import com.imnachos.coffeepad.Style.LanguageStyleManager;
 import com.imnachos.coffeepad.Util.CommandManager;
 import com.imnachos.coffeepad.Util.LogManager;
 
-import javax.sound.sampled.Line;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,6 +62,8 @@ public class Editor extends JFrame implements ActionListener{
         contentPane.setLayout(new CardLayout());
         contentPane.setForeground(Settings.DEFAULT_BACKGROUND);
 
+
+
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -74,15 +74,24 @@ public class Editor extends JFrame implements ActionListener{
         styledLanguages = LanguageStyleManager.loadStyles();
         commandManager = new CommandManager();
 
-        textPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        //textPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+        textPanel = new JPanel(new BorderLayout());
         textPanel.setBackground(Settings.DEFAULT_BACKGROUND);
 
+
         textContainer = new TextContainer();
-        scrollbar = new JScrollPane(textContainer);
-        scrollbar.setBorder(null);
-        //TextLineNumber numbering = new TextLineNumber(textContainer);
-        //textContainer.add(numbering);
-        textPanel.add(textContainer, BorderLayout.WEST);
+        textContainer.setForeground(Settings.DEFAULT_COLOR);
+        textContainer.setBorder(BorderFactory.createLineBorder(Color.red));
+        textContainer.getInputMap().put(KeyStroke.getKeyStroke("SPACE"),  new FormatKeyListener());
+
+        scrollbar = new JScrollPane(textContainer,  JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollbar.setBackground(Settings.DEFAULT_BACKGROUND);
+        scrollbar.setForeground(Settings.DEFAULT_BACKGROUND);
+        TextLineNumber numbering = new TextLineNumber(textContainer);
+        
+        textContainer.add(numbering);
+        textPanel.add(scrollbar, BorderLayout.CENTER);
         add(textPanel, BorderLayout.WEST);
 
 
@@ -111,6 +120,7 @@ public class Editor extends JFrame implements ActionListener{
         fontSize = Settings.DEFAULT_FONT_SIZE;
 
         setVisible(true);
+
     }
       
     /*
@@ -167,7 +177,6 @@ public class Editor extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event) {
         JMenuItem item = (JMenuItem) event.getSource();
         item.getAction().actionPerformed(event);
-
     }
 
     /*
@@ -177,7 +186,8 @@ public class Editor extends JFrame implements ActionListener{
     	this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     	addWindowListener(new WindowAdapter() {
     	    
-    		//Use lambdas
+    		//TODO Use lambdas
+
     		@Override
     	    public void windowClosing(WindowEvent we){ 
     	        String ObjButtons[] = {"Exit","Save"};

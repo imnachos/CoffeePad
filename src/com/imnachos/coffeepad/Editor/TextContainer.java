@@ -8,6 +8,7 @@ import com.imnachos.coffeepad.Style.LanguageStyle;
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import java.util.Map;
 /*
     Simple JTextPane child class
  */
-public class TextContainer extends JTextPane {
+public class TextContainer extends JTextPane{
 
     public TextListener textListener;
 
@@ -30,6 +31,7 @@ public class TextContainer extends JTextPane {
         LanguageStyle defaultStyle = new LanguageStyle("default", emptyColorMap);
         textListener.setCurrentStyle(defaultStyle);
 
+        //((AbstractDocument) this.getStyledDocument()).addDocumentListener(textListener);
         ((AbstractDocument) this.getStyledDocument()).setDocumentFilter(textListener);
         SimpleAttributeSet background = new SimpleAttributeSet();
         StyleConstants.setBackground(background, Settings.DEFAULT_BACKGROUND);
