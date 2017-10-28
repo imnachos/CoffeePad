@@ -18,8 +18,8 @@ public class Open extends Command {
         if(choice == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
 
-            if(Main.editor.textContainer.isDocumentEmpty() && selectedFile.isFile()){
-            	Main.editor.textContainer.setText(FileManager.openFile(selectedFile));
+            if(Main.editor.canvas.isDocumentEmpty() && selectedFile.isFile()){
+            	Main.editor.canvas.setText(FileManager.openFile(selectedFile));
                 Main.editor.setTitle(selectedFile.getName());
             }else{
             	

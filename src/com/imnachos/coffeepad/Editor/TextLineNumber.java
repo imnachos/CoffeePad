@@ -1,5 +1,7 @@
 package com.imnachos.coffeepad.Editor;
 
+import com.imnachos.coffeepad.Engine.Settings;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
@@ -18,9 +20,7 @@ import javax.swing.text.*;
  *  This class was designed to be used as a component added to the row header
  *  of a JScrollPane.
  */
-public class TextLineNumber extends JPanel
-        implements CaretListener, DocumentListener, PropertyChangeListener
-{
+public class TextLineNumber extends JPanel implements CaretListener, DocumentListener, PropertyChangeListener {
     public final static float LEFT = 0.0f;
     public final static float CENTER = 0.5f;
     public final static float RIGHT = 1.0f;
@@ -28,6 +28,7 @@ public class TextLineNumber extends JPanel
     private final static Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);
 
     private final static int HEIGHT = Integer.MAX_VALUE - 1000000;
+
 
     //  Text component this TextTextLineNumber component is in sync with
 
@@ -72,11 +73,12 @@ public class TextLineNumber extends JPanel
     {
         this.component = component;
 
-        setFont( component.getFont() );
-
-        setBorderGap( 5 );
-        setCurrentLineForeground( Color.RED );
-        setDigitAlignment( RIGHT );
+        setFont(component.getFont());
+        setForeground(Settings.GUI_COLOR);
+        setBackground(Settings.GUI_COLOR);
+        setBorderGap(5);
+        setCurrentLineForeground(Settings.GUI_FONT_COLOR);
+        setDigitAlignment(RIGHT);
         setMinimumDisplayDigits( minimumDisplayDigits );
 
         component.getDocument().addDocumentListener(this);

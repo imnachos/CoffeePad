@@ -12,7 +12,7 @@ public class Save extends Command {
     	if(!Main.editor.isFileSaved()){
     		new Saveas();
     	}else{
-    		FileManager.saveFile(Main.editor.getCurrentFile(), Main.editor.textContainer.getText());
+    		FileManager.saveFile(Main.editor.getCurrentFile(), Main.editor.canvas.getText());
     	}
     }
 

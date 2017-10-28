@@ -1,17 +1,13 @@
 package com.imnachos.coffeepad.Windows;
 
 import com.imnachos.coffeepad.Engine.Main;
-import com.imnachos.coffeepad.Engine.Settings;
 import com.imnachos.coffeepad.Util.FileManager;
 
 import javax.swing.*;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 
 public class SaveAs extends JFrame implements ActionListener {
 
@@ -24,7 +20,7 @@ public class SaveAs extends JFrame implements ActionListener {
 
         if(choice == JFileChooser.APPROVE_OPTION) {
         	File outputFile = fileChooser.getSelectedFile();
-        	boolean wasFileSaved = FileManager.saveFile(outputFile, Main.editor.textContainer.getText());
+        	boolean wasFileSaved = FileManager.saveFile(outputFile, Main.editor.canvas.getText());
         	
         	if(wasFileSaved){
         		Main.editor.setFileSaved(true);
