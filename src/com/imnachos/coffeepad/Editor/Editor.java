@@ -32,6 +32,7 @@ public class Editor extends JFrame implements ActionListener{
     private JPanel textPanel;
     public TextContainer canvas;
     private JScrollPane scrollbars;
+    private LineNumberPanel lineNumberPanel;
 
     private boolean isFileSaved;
     private File currentFile;
@@ -58,7 +59,7 @@ public class Editor extends JFrame implements ActionListener{
 
 
         try {
-            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             LogManager.printLog("Unhandled exception. Todo.");
             e.printStackTrace();
@@ -68,7 +69,8 @@ public class Editor extends JFrame implements ActionListener{
         commandManager = new CommandManager();
 
         textPanel = new JPanel(new BorderLayout());
-        textPanel.setForeground(Settings.DEFAULT_BACKGROUND);
+        textPanel.setForeground(Color.RED);
+        textPanel.setBackground(Color.RED);
 
         canvas = new TextContainer();
 
@@ -76,10 +78,11 @@ public class Editor extends JFrame implements ActionListener{
         scrollbars.setBackground(Settings.GUI_COLOR);
         scrollbars.setForeground(Settings.GUI_COLOR);
 
-        TextLineNumber numbering = new TextLineNumber(canvas);
-        canvas.add(numbering);
+        lineNumberPanel = new LineNumberPanel(canvas);
+        scrollbars.setRowHeaderView(lineNumberPanel);
 
         textPanel.add(scrollbars, BorderLayout.CENTER);
+        textPanel.add(lineNumberPanel, BorderLayout.WEST);
         add(textPanel, BorderLayout.WEST);
 
 
@@ -97,8 +100,6 @@ public class Editor extends JFrame implements ActionListener{
         toolbar.add(MENU_FILE);
         toolbar.add(MENU_EDIT);
         toolbar.add(MENU_STYLE);
-        toolbar.setBackground(Settings.GUI_COLOR);
-        toolbar.setForeground(Settings.GUI_COLOR);
         setJMenuBar(toolbar);
 
         setVisible(true);

@@ -97,8 +97,7 @@ public class TextListener implements DocumentListener {
         }
 
         if(lastCharacter.equals("(")){
-
-            canvas.setCaretPosition(1);
+            canvas.setCaretPosition(canvas.getCaretPosition()+1);
         }
 
     }

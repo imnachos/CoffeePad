@@ -20,6 +20,7 @@ import java.util.Map;
 public class TextContainer extends JTextPane{
 
     public TextListener textListener;
+    private LanguageStyle defaultStyle;
 
     public TextContainer() {
 
@@ -28,19 +29,23 @@ public class TextContainer extends JTextPane{
         textListener = new TextListener(this);
 
         setForeground(Settings.DEFAULT_COLOR);
-        setBorder(BorderFactory.createLineBorder(Color.red));
         getInputMap().put(KeyStroke.getKeyStroke("SPACE"), new FormatKeyListener());
 
         //TODO REFACTOR THIS, MOVE TO LANGUAGESTYLEMANAGER
         Map<String, Color> emptyColorMap = new HashMap<String, Color>();
-        LanguageStyle defaultStyle = new LanguageStyle("default", emptyColorMap);
+        defaultStyle = new LanguageStyle("default", emptyColorMap);
         textListener.setCurrentStyle(defaultStyle);
+
 
         ((AbstractDocument) getStyledDocument()).addDocumentListener(textListener);
         SimpleAttributeSet background = new SimpleAttributeSet();
+        SimpleAttributeSet foreground = new SimpleAttributeSet();
         StyleConstants.setBackground(background, Settings.DEFAULT_BACKGROUND);
+        StyleConstants.setForeground(foreground, Settings.DEFAULT_BACKGROUND);
         setCaretColor(Settings.DEFAULT_COLOR);
         getStyledDocument().setParagraphAttributes(0, getDocument().getLength(), background, false);
+        getStyledDocument().setParagraphAttributes(0, getDocument().getLength(), foreground, false);
+        setOpaque(false);
 
 
     }
@@ -49,6 +54,17 @@ public class TextContainer extends JTextPane{
         return this.getText().isEmpty();
     }
 
+    public void insertStringAt(String text, int position){
+        StyledDocument styledDocument = getStyledDocument();
+        try{
+            styledDocument.insertString(position, text, null);
+        }catch(Exception exception){
+            exception.printStackTrace();
+            //TODO EXCEPTION
+        }
+
+
+    }
 
 
 }
