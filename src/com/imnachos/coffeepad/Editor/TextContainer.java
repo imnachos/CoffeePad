@@ -1,6 +1,5 @@
 package com.imnachos.coffeepad.Editor;
 
-import com.imnachos.coffeepad.Engine.Main;
 import com.imnachos.coffeepad.Engine.Settings;
 import com.imnachos.coffeepad.Listener.FormatKeyListener;
 import com.imnachos.coffeepad.Listener.TextListener;
@@ -9,7 +8,6 @@ import com.imnachos.coffeepad.Style.LanguageStyle;
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,14 +36,14 @@ public class TextContainer extends JTextPane{
 
 
         ((AbstractDocument) getStyledDocument()).addDocumentListener(textListener);
-        SimpleAttributeSet background = new SimpleAttributeSet();
+        /*SimpleAttributeSet background = new SimpleAttributeSet();
         SimpleAttributeSet foreground = new SimpleAttributeSet();
         StyleConstants.setBackground(background, Settings.DEFAULT_BACKGROUND);
         StyleConstants.setForeground(foreground, Settings.DEFAULT_BACKGROUND);
         setCaretColor(Settings.DEFAULT_COLOR);
         getStyledDocument().setParagraphAttributes(0, getDocument().getLength(), background, false);
         getStyledDocument().setParagraphAttributes(0, getDocument().getLength(), foreground, false);
-        setOpaque(false);
+        setOpaque(false);*/
 
 
     }

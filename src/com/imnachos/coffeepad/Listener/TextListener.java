@@ -9,6 +9,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
 import java.awt.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class TextListener implements DocumentListener {
 
@@ -37,8 +39,9 @@ public class TextListener implements DocumentListener {
 
     @Override
     public void insertUpdate(DocumentEvent documentEvent) {
-        String lastWord;
+        List lastWord;
         lastWord = checkLastWord();
+        applyFormat(lastWord);
         processAutoComplete(lastWord);
     }
 
@@ -49,37 +52,47 @@ public class TextListener implements DocumentListener {
 
     @Override
     public void changedUpdate(DocumentEvent documentEvent) {
-        String lastWord = checkLastWord();
-        //int startIndex = offset - key.length();
-
-        if("hola".equals("cas")){
-            if(!lastWord.equals(" ")){
-                Color wordStyle = currentStyle.getStyleForKey(lastWord);
-                AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, wordStyle);
-                // styledDocument.setCharacterAttributes(startIndex, startIndex + key.length(), styleAttributes, false);
-
-            }
-        }
 
     }
 
-    private String checkLastWord() {
+    private void applyFormat(List lastWord){
+        if(!lastWord.isEmpty() && lastWord.size() == 3) {
+            String word = (String) lastWord.get(0);
+            int wordStart = (int) lastWord.get(1);
+            int wordEnd = (int) lastWord.get(2);
+
+            Color wordStyle = currentStyle.getStyleForKey(word);
+            AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, wordStyle);
+            styledDocument.setCharacterAttributes(wordStart, wordEnd, styleAttributes, false);
+
+        }
+    }
+    
+    private List checkLastWord() {
 
         String lastWord = "";
         int wordStart;
         int wordEnd;
+        int caretPosition = canvas.getCaretPosition();
+        List returnVal = new ArrayList();
 
         try {
-            wordStart = Utilities.getWordStart(canvas, canvas.getCaretPosition());
-            wordEnd = Utilities.getWordEnd(canvas, canvas.getCaretPosition());
+            wordStart = Utilities.getWordStart(canvas, caretPosition);
+            wordEnd = Utilities.getWordEnd(canvas, caretPosition);
             lastWord = canvas.getDocument().getText(wordStart, wordEnd - wordStart);
 
 
-            if(lastWord.equals(" ")){
-                wordStart = Utilities.getWordStart(canvas, canvas.getCaretPosition() -1);
-                wordEnd = Utilities.getWordEnd(canvas, canvas.getCaretPosition() -1 );
+            System.out.println("Caret pos: " + caretPosition);
+
+            if(lastWord.equals(" ") && caretPosition != 0){
+                wordStart = Utilities.getWordStart(canvas, caretPosition -1);
+                wordEnd = Utilities.getWordEnd(canvas, caretPosition -1 );
                 lastWord = canvas.getDocument().getText(wordStart, wordEnd - wordStart);
                 System.out.println("Last word: " + lastWord);
+                returnVal.add(lastWord);
+                returnVal.add(wordStart);
+                returnVal.add(wordEnd);
+                return returnVal;
             }
 
         } catch (Exception e) {
@@ -87,17 +100,22 @@ public class TextListener implements DocumentListener {
             e.printStackTrace();
         }
 
-        return lastWord;
+        return returnVal;
     }
 
-    private void processAutoComplete(String lastCharacter){
+    private void processAutoComplete(List lastWord){
+        if(!lastWord.isEmpty()){
+            String word = (String) lastWord.get(0);
 
-        if(lastCharacter.equals("{")){
-            canvas.setCaretPosition(1);
-        }
+            if(word.length() == 1){
+                if(word.equals("{")){
+                    canvas.setCaretPosition(1);
+                }
 
-        if(lastCharacter.equals("(")){
-            canvas.setCaretPosition(canvas.getCaretPosition()+1);
+                if(word.equals("(")){
+                    canvas.setCaretPosition(canvas.getCaretPosition()+1);
+                }
+            }
         }
 
     }

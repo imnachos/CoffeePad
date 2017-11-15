@@ -42,7 +42,8 @@ public class Settings {
     private static final String LABEL_EXIT = "Exit";
 
     public static final Color DEFAULT_BACKGROUND = new Color(43, 43,43);
-    public static final Color DEFAULT_COLOR = new Color(168, 182,173);
+    //public static final Color DEFAULT_COLOR = new Color(168, 182,173);
+    public static final Color DEFAULT_COLOR = new Color(0, 0,0);
     public static final Color GUI_COLOR = new Color(49, 51,53);
     public static final Color GUI_FONT_COLOR = new Color(96, 99,102);
     public static final Color TOOLBAR_FONT_COLOR = new Color(147, 186,166);

@@ -69,14 +69,11 @@ public class Editor extends JFrame implements ActionListener{
         commandManager = new CommandManager();
 
         textPanel = new JPanel(new BorderLayout());
-        textPanel.setForeground(Color.RED);
-        textPanel.setBackground(Color.RED);
 
         canvas = new TextContainer();
 
         scrollbars = new JScrollPane(canvas, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollbars.setBackground(Settings.GUI_COLOR);
-        scrollbars.setForeground(Settings.GUI_COLOR);
+        //scrollbars.setBackground(Settings.GUI_COLOR);
 
         lineNumberPanel = new LineNumberPanel(canvas);
         scrollbars.setRowHeaderView(lineNumberPanel);
@@ -93,7 +90,6 @@ public class Editor extends JFrame implements ActionListener{
         buildMenu(MENU_EDIT, Settings.FUNCTIONS_EDIT);
         MENU_STYLE = new JMenu(Settings.LABEL_STYLE);
         buildStyleMenu(MENU_STYLE, styledLanguages);
-        Font GUIFont = new Font(Font.MONOSPACED,12, 0);
 
         //File bar
         toolbar = new JMenuBar();
