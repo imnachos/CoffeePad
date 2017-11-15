@@ -10,7 +10,4 @@ public class Selectall extends Command {
     	Main.editor.canvas.selectAll();
     }
 
-    public void undoAction(ActionEvent event){
-
-    }
 }

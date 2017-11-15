@@ -99,15 +99,13 @@ public class LineNumberPanel extends JPanel implements CaretListener, DocumentLi
 
             Dimension d = getPreferredSize();
             d.setSize(preferredWidth, HEIGHT);
-            setPreferredSize( d );
-            setSize( d );
+            setPreferredSize(d);
+            setSize(d);
         }
     }
 
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
 
         FontMetrics fontMetrics = canvas.getFontMetrics( canvas.getFont() );
         Insets insets = getInsets();
@@ -128,12 +126,13 @@ public class LineNumberPanel extends JPanel implements CaretListener, DocumentLi
                 int stringWidth = fontMetrics.stringWidth(lineNumber);
                 int x = getOffsetX(availableWidth, stringWidth) + insets.left;
                 int y = getOffsetY(rowStartOffset, fontMetrics);
-                System.out.println("lineNumber " + lastLine);
+
                 int lineCount = Integer.valueOf(lastLine);
                 int yCount = y;
+
                 while(lineCount > 0){
-                    g.drawString(String.valueOf(lineCount), x, yCount);
-                    System.out.println("y: " + yCount);
+                    //g.drawString(String.valueOf(lineCount), x, yCount);
+                    //TODO FIX LINE NUMBER DRAWING
                     yCount = yCount - 20;
                     lineCount = lineCount - 1;
                 }

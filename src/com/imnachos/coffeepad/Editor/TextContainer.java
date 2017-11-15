@@ -1,6 +1,10 @@
 package com.imnachos.coffeepad.Editor;
 
+import Memento.Caretaker;
+import Memento.Originator;
+import com.imnachos.coffeepad.Engine.Main;
 import com.imnachos.coffeepad.Engine.Settings;
+import com.imnachos.coffeepad.Filter.TextFilter;
 import com.imnachos.coffeepad.Listener.FormatKeyListener;
 import com.imnachos.coffeepad.Listener.TextListener;
 import com.imnachos.coffeepad.Style.LanguageStyle;
@@ -18,13 +22,25 @@ import java.util.Map;
 public class TextContainer extends JTextPane{
 
     public TextListener textListener;
+    public TextFilter textFilter;
     private LanguageStyle defaultStyle;
 
+    public Originator originator;
+    public Caretaker caretaker;
+    public int currentState;
+    public int savedStates;
+
     public TextContainer() {
+
+        originator = new Originator();
+        caretaker = new Caretaker();
+        savedStates = 0;
+        currentState = 0;
 
         setContentType("text/html");
         setBorder(null);
         textListener = new TextListener(this);
+        textFilter = new TextFilter(this);
 
         setForeground(Settings.DEFAULT_COLOR);
         getInputMap().put(KeyStroke.getKeyStroke("SPACE"), new FormatKeyListener());
@@ -35,7 +51,9 @@ public class TextContainer extends JTextPane{
         textListener.setCurrentStyle(defaultStyle);
 
 
-        ((AbstractDocument) getStyledDocument()).addDocumentListener(textListener);
+        //((AbstractDocument) getStyledDocument()).addDocumentListener(textListener);
+        ((AbstractDocument) getDocument()).setDocumentFilter(textFilter);
+
         /*SimpleAttributeSet background = new SimpleAttributeSet();
         SimpleAttributeSet foreground = new SimpleAttributeSet();
         StyleConstants.setBackground(background, Settings.DEFAULT_BACKGROUND);
@@ -52,16 +70,31 @@ public class TextContainer extends JTextPane{
         return this.getText().isEmpty();
     }
 
-    public void insertStringAt(String text, int position){
-        StyledDocument styledDocument = getStyledDocument();
-        try{
-            styledDocument.insertString(position, text, null);
-        }catch(Exception exception){
-            exception.printStackTrace();
-            //TODO EXCEPTION
+    public void undo(){
+
+        if(currentState >= 1){
+            currentState--;
+            String textContent = originator.restoreFromMemento( caretaker.getMemento(currentState) );
+            setText(textContent);
         }
+    }
 
+    public void redo(){
 
+        if((savedStates - 1) > currentState){
+
+            currentState++;
+            String textContent = originator.restoreFromMemento( caretaker.getMemento(currentState) );
+            setText(textContent);
+        }
+    }
+
+    public void createMementoState(){
+        String canvasText = getText();
+        originator.set(canvasText);
+        caretaker.addMemento(originator.storeInMemento());
+        savedStates++;
+        currentState++;
     }
 
 

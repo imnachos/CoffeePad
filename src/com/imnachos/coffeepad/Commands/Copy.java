@@ -10,7 +10,4 @@ public class Copy extends Command {
         Main.editor.canvas.copy();
     }
 
-    public void undoAction(ActionEvent event){
-
-    }
 }

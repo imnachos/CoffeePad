@@ -7,12 +7,9 @@ import java.awt.event.ActionEvent;
 public class Paste extends Command {
 
     public void actionPerformed(ActionEvent event){
+
         Main.editor.canvas.paste();
     }
 
-    public void undoAction(ActionEvent event){
-
-
-    }
 
 }

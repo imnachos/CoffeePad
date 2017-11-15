@@ -16,7 +16,4 @@ public class Save extends Command {
     	}
     }
 
-    public void undoAction(ActionEvent event){
-
-    }
 }

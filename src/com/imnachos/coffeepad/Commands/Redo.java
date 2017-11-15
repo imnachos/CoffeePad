@@ -7,10 +7,7 @@ import com.imnachos.coffeepad.Engine.Main;
 public class Redo extends Command {
 
     public void actionPerformed(ActionEvent event){
-    	Main.editor.commandManager.redo();
+        Main.editor.canvas.redo();
     }
 
-    public void undoAction(ActionEvent event){
-
-    }
 }

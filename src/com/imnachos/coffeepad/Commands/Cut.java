@@ -11,7 +11,4 @@ public class Cut extends Command {
        Main.editor.canvas.cut();
     }
 
-    public void undoAction(ActionEvent event){
-
-    }
 }

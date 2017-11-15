@@ -25,8 +25,4 @@ public class New extends Command {
         }
     }
 
-    public void undoAction(ActionEvent event){
-
-    }
-
 }

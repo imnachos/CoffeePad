@@ -1,9 +1,13 @@
 package com.imnachos.coffeepad.Listener;
 
 
+import Memento.Caretaker;
+import Memento.Originator;
 import com.imnachos.coffeepad.Editor.TextContainer;
+import com.imnachos.coffeepad.Engine.Main;
 import com.imnachos.coffeepad.Engine.Settings;
 import com.imnachos.coffeepad.Style.LanguageStyle;
+import com.imnachos.coffeepad.Util.FormatManager;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -19,6 +23,7 @@ public class TextListener implements DocumentListener {
 
     public LanguageStyle currentStyle;
     private StyleContext styleContext;
+
 
     public TextListener(TextContainer container) {
 
@@ -39,6 +44,7 @@ public class TextListener implements DocumentListener {
 
     @Override
     public void insertUpdate(DocumentEvent documentEvent) {
+
         List lastWord;
         lastWord = checkLastWord();
         applyFormat(lastWord);
@@ -47,12 +53,11 @@ public class TextListener implements DocumentListener {
 
     @Override
     public void removeUpdate(DocumentEvent documentEvent) {
-        checkLastWord();
+        //checkLastWord();
     }
 
     @Override
     public void changedUpdate(DocumentEvent documentEvent) {
-
     }
 
     private void applyFormat(List lastWord){
@@ -62,8 +67,8 @@ public class TextListener implements DocumentListener {
             int wordEnd = (int) lastWord.get(2);
 
             Color wordStyle = currentStyle.getStyleForKey(word);
-            AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, wordStyle);
-            styledDocument.setCharacterAttributes(wordStart, wordEnd, styleAttributes, false);
+            //AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, wordStyle);
+            //styledDocument.setCharacterAttributes(wordStart, wordEnd, styleAttributes, false);
 
         }
     }
@@ -81,17 +86,14 @@ public class TextListener implements DocumentListener {
             wordEnd = Utilities.getWordEnd(canvas, caretPosition);
             lastWord = canvas.getDocument().getText(wordStart, wordEnd - wordStart);
 
-
-            System.out.println("Caret pos: " + caretPosition);
-
             if(lastWord.equals(" ") && caretPosition != 0){
                 wordStart = Utilities.getWordStart(canvas, caretPosition -1);
                 wordEnd = Utilities.getWordEnd(canvas, caretPosition -1 );
                 lastWord = canvas.getDocument().getText(wordStart, wordEnd - wordStart);
-                System.out.println("Last word: " + lastWord);
                 returnVal.add(lastWord);
                 returnVal.add(wordStart);
                 returnVal.add(wordEnd);
+
                 return returnVal;
             }
 

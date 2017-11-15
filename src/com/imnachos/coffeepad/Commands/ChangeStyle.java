@@ -17,7 +17,4 @@ public class ChangeStyle  extends Command {
         }
     }
 
-    public void undoAction(ActionEvent event) {
-
-    }
 }

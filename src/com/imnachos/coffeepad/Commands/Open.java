@@ -29,9 +29,4 @@ public class Open extends Command {
         }
     }
 
-    public void undoAction(ActionEvent event){
-
-    }
-
-
 }

@@ -1,11 +1,12 @@
 package com.imnachos.coffeepad.Editor;
 
+import Memento.Originator;
 import com.imnachos.coffeepad.Commands.ChangeStyle;
 import com.imnachos.coffeepad.Commands.Command;
 import com.imnachos.coffeepad.Engine.Settings;
 import com.imnachos.coffeepad.Style.LanguageStyle;
 import com.imnachos.coffeepad.Style.LanguageStyleManager;
-import com.imnachos.coffeepad.Util.CommandManager;
+import Memento.Caretaker;
 import com.imnachos.coffeepad.Util.LogManager;
 import com.imnachos.coffeepad.Windows.SaveAs;
 
@@ -33,10 +34,10 @@ public class Editor extends JFrame implements ActionListener{
     public TextContainer canvas;
     private JScrollPane scrollbars;
     private LineNumberPanel lineNumberPanel;
+    private ProjectTree projectTree;
 
     private boolean isFileSaved;
     private File currentFile;
-    public CommandManager commandManager;
 
     public LanguageStyle currentLanguageStyle;
     public Map<String, LanguageStyle> styledLanguages;
@@ -56,17 +57,16 @@ public class Editor extends JFrame implements ActionListener{
         contentPane.setLayout(new CardLayout());
         contentPane.setForeground(Settings.DEFAULT_BACKGROUND);
 
-
-
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             LogManager.printLog("Unhandled exception. Todo.");
             e.printStackTrace();
         }
+
+
         styledLanguages = new HashMap<String, LanguageStyle>();
         styledLanguages = LanguageStyleManager.loadStyles();
-        commandManager = new CommandManager();
 
         textPanel = new JPanel(new BorderLayout());
 
@@ -80,7 +80,11 @@ public class Editor extends JFrame implements ActionListener{
 
         textPanel.add(scrollbars, BorderLayout.CENTER);
         textPanel.add(lineNumberPanel, BorderLayout.WEST);
-        add(textPanel, BorderLayout.WEST);
+
+        //projectTree = new ProjectTree();
+        //add(projectTree, BorderLayout.LINE_START);
+
+        add(textPanel, BorderLayout.CENTER);
 
 
         //Menu items
