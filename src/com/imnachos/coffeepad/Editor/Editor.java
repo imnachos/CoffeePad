@@ -58,8 +58,8 @@ public class Editor extends JFrame implements ActionListener{
         textPanel.add(scrollbars, BorderLayout.CENTER);
         textPanel.add(lineNumberPanel, BorderLayout.WEST);
 
-        //projectTree = new ProjectTree();
-        //add(projectTree, BorderLayout.LINE_START);
+        projectTree = new ProjectTree();
+        add(projectTree, BorderLayout.LINE_START);
 
         add(textPanel, BorderLayout.CENTER);
 
@@ -91,7 +91,7 @@ public class Editor extends JFrame implements ActionListener{
         this.setIconImage(windowIcon.getImage());
         setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
         setOnCloseProperty();
-        getContentPane().setLayout(new CardLayout());
+        getContentPane().setLayout(new BorderLayout());
         getContentPane().setForeground(Settings.DEFAULT_BACKGROUND);
 
         try {
