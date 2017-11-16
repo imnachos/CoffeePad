@@ -1,7 +1,6 @@
 package com.imnachos.coffeepad.Engine;
 
 import com.imnachos.coffeepad.Editor.Editor;
-import com.imnachos.coffeepad.Style.LanguageStyleManager;
 
 import java.awt.*;
 

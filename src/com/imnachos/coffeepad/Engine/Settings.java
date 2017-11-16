@@ -4,10 +4,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Settings {
@@ -28,7 +25,7 @@ public class Settings {
 
     private static final String LABEL_NEW = "New";
     private static final String LABEL_SAVE = "Save";
-    public static final String LABEL_SAVE_AS = "Save as";
+    private static final String LABEL_SAVE_AS = "Save as";
     private static final String LABEL_OPEN = "Open";
 
     private static final String LABEL_COPY = "Copy";

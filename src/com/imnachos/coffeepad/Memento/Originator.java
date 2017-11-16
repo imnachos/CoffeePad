@@ -1,4 +1,4 @@
-package Memento;
+package com.imnachos.coffeepad.Memento;
 
 public class Originator{
 

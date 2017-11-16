@@ -1,7 +1,5 @@
 package com.imnachos.coffeepad.Editor;
 
-import com.imnachos.coffeepad.Engine.Settings;
-
 import java.awt.*;
 import java.util.HashMap;
 import javax.swing.*;
@@ -9,8 +7,8 @@ import javax.swing.border.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
 
-public class LineNumberPanel extends JPanel implements CaretListener, DocumentListener {
-    public final static float RIGHT = 1.0f;
+class LineNumberPanel extends JPanel implements CaretListener, DocumentListener {
+    private final static float RIGHT = 1.0f;
 
     private final static Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);
 
@@ -36,7 +34,7 @@ public class LineNumberPanel extends JPanel implements CaretListener, DocumentLi
         //setForeground(Settings.GUI_COLOR);
         //setBackground(Settings.GUI_COLOR);
         setBorderGap(5);
-        setCurrentLineForeground(Settings.GUI_FONT_COLOR);
+        //setCurrentLineForeground(Settings.GUI_FONT_COLOR);
         setDigitAlignment(RIGHT);
         setMinimumDisplayDigits(3);
 
@@ -44,13 +42,7 @@ public class LineNumberPanel extends JPanel implements CaretListener, DocumentLi
         component.addCaretListener(this);
     }
 
-
-    public int getBorderGap() {
-        return borderGap;
-    }
-
-
-    public void setBorderGap(int borderGap) {
+    private void setBorderGap(int borderGap) {
         this.borderGap = borderGap;
         Border inner = new EmptyBorder(0, borderGap, 0, borderGap);
         setBorder( new CompoundBorder(OUTER, inner) );
@@ -59,28 +51,19 @@ public class LineNumberPanel extends JPanel implements CaretListener, DocumentLi
     }
 
 
-    public Color getCurrentLineForeground() {
+    private Color getCurrentLineForeground() {
         return currentLineForeground == null ? getForeground() : currentLineForeground;
     }
-
-    public void setCurrentLineForeground(Color currentLineForeground) {
-        this.currentLineForeground = currentLineForeground;
-    }
-
 
     public float getDigitAlignment() {
         return digitAlignment;
     }
 
-    public void setDigitAlignment(float digitAlignment) {
+    private void setDigitAlignment(float digitAlignment) {
         this.digitAlignment = digitAlignment > 1.0f ? 1.0f : digitAlignment < 0.0f ? -1.0f : digitAlignment;
     }
 
-    public int getMinimumDisplayDigits() {
-        return minimumDisplayDigits;
-    }
-
-    public void setMinimumDisplayDigits(int minimumDisplayDigits) {
+    private void setMinimumDisplayDigits(int minimumDisplayDigits) {
         this.minimumDisplayDigits = minimumDisplayDigits;
         setPreferredWidth();
     }
@@ -127,7 +110,7 @@ public class LineNumberPanel extends JPanel implements CaretListener, DocumentLi
                 int x = getOffsetX(availableWidth, stringWidth) + insets.left;
                 int y = getOffsetY(rowStartOffset, fontMetrics);
 
-                int lineCount = Integer.valueOf(lastLine);
+                int lineCount = lastLine;
                 int yCount = y;
 
                 while(lineCount > 0){
@@ -151,14 +134,10 @@ public class LineNumberPanel extends JPanel implements CaretListener, DocumentLi
         int caretPosition = canvas.getCaretPosition();
         Element root = canvas.getDocument().getDefaultRootElement();
 
-        if (root.getElementIndex( rowStartOffset ) == root.getElementIndex(caretPosition)) {
-            return true;
-        }else {
-            return false;
-        }
+        return root.getElementIndex(rowStartOffset) == root.getElementIndex(caretPosition);
     }
 
-    protected String getTextLineNumber(int rowStartOffset) {
+    private String getTextLineNumber(int rowStartOffset) {
 
         if (lastLine == rowStartOffset) {
             return String.valueOf(lastLine + 1);
@@ -226,13 +205,16 @@ public class LineNumberPanel extends JPanel implements CaretListener, DocumentLi
         }
     }
 
-    public int getCaretRowPosition() {
+    private int getCaretRowPosition() {
         try {
             int y = canvas.modelToView(canvas.getCaretPosition()).y;
 
             int line = (y -1)/20;
             return ++line;
         } catch (BadLocationException e) {
+
+            e.printStackTrace();
+            //TODO EXCEPTION
         }
         return -1;
     }
@@ -259,22 +241,19 @@ public class LineNumberPanel extends JPanel implements CaretListener, DocumentLi
 
     private void documentChanged() {
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    int endPos = canvas.getDocument().getLength();
-                    Rectangle rect = canvas.modelToView(endPos);
+        SwingUtilities.invokeLater(() -> {
+            try {
+                int endPos = canvas.getDocument().getLength();
+                Rectangle rect = canvas.modelToView(endPos);
 
-                    if (rect != null && rect.y != lastHeight) {
-                        setPreferredWidth();
-                        repaint();
-                        lastHeight = rect.y;
-                    }
+                if (rect != null && rect.y != lastHeight) {
+                    setPreferredWidth();
+                    repaint();
+                    lastHeight = rect.y;
                 }
-                catch (BadLocationException ex) {
-                    //TODO EXCEPTION
-                }
+            }
+            catch (BadLocationException ex) {
+                //TODO EXCEPTION
             }
         });
     }

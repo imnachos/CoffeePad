@@ -1,14 +1,13 @@
 package com.imnachos.coffeepad.Editor;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.io.File;
 
-public class ProjectTree extends JPanel {
-    JTree tree;
-    DefaultMutableTreeNode root;
+class ProjectTree extends JPanel {
+    private JTree tree;
+    private DefaultMutableTreeNode root;
 
     public ProjectTree() {
         root = new DefaultMutableTreeNode("root", true);
@@ -32,8 +31,8 @@ public class ProjectTree extends JPanel {
             DefaultMutableTreeNode child = new DefaultMutableTreeNode(f);
             node.add(child);
             File fList[] = f.listFiles();
-            for(int i = 0; i  < fList.length; i++) {
-                getList(child, fList[i]);
+            for (File aFList : fList) {
+                getList(child, aFList);
             }
         }
     }

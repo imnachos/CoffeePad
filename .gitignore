@@ -1,6 +1,4 @@
-
 *.xml
 *.class
 out/
-out/production/CoffeePad/com/imnachos/coffeepad/Engine/Settings$1.class
-*.class
+

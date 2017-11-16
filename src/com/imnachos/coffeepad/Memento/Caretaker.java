@@ -1,10 +1,10 @@
-package Memento;
+package com.imnachos.coffeepad.Memento;
 
 import java.util.ArrayList;
 
 public class Caretaker {
 
-    ArrayList<Memento> states = new ArrayList<Memento>();
+    private ArrayList<Memento> states = new ArrayList<Memento>();
 
     public void addMemento(Memento memento){
         states.add(memento);

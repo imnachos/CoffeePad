@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 
-import com.imnachos.coffeepad.Engine.Main;
-
 public class FileManager {
 
 
@@ -14,8 +12,7 @@ public class FileManager {
 		
         try{
             byte[] contents = Files.readAllBytes(selectedFile.toPath());
-            String fileContent = new String(contents, "ISO-8859-1");
-            return fileContent;
+            return new String(contents, "ISO-8859-1");
         }catch(Exception e){
             //TODO HANDLE. Should not happen.
         	return "";

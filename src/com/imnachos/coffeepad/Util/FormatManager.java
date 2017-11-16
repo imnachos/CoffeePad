@@ -5,7 +5,7 @@ import com.imnachos.coffeepad.Editor.TextContainer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FormatManager {
+class FormatManager {
 
 
     private List formatWords;
