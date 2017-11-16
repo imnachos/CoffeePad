@@ -1,12 +1,12 @@
 package com.imnachos.coffeepad.Editor;
 
 import com.imnachos.coffeepad.Engine.Main;
-import com.imnachos.coffeepad.Memento.Caretaker;
-import com.imnachos.coffeepad.Memento.Originator;
 import com.imnachos.coffeepad.Engine.Settings;
 import com.imnachos.coffeepad.Filter.TextFilter;
 import com.imnachos.coffeepad.Listener.FormatKeyListener;
 import com.imnachos.coffeepad.Listener.TextListener;
+import com.imnachos.coffeepad.Memento.Caretaker;
+import com.imnachos.coffeepad.Memento.Originator;
 import com.imnachos.coffeepad.Style.LanguageStyle;
 
 import javax.swing.*;
@@ -74,8 +74,6 @@ public class TextContainer extends JTextPane{
     public void applyFormat() throws BadLocationException{
 
         List lastWord = checkLastWord();
-
-        System.out.println("Lasword: " + lastWord);
 
         if(!lastWord.isEmpty() && lastWord.size() == 3) {
 
