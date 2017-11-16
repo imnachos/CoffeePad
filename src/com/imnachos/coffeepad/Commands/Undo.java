@@ -7,10 +7,7 @@ import java.awt.event.ActionEvent;
 public class Undo extends Command {
 
     public void actionPerformed(ActionEvent event){
-    	Main.editor.commandManager.undo();
+        Main.editor.canvas.undo();
     }
 
-    public void undoAction(ActionEvent event){
-
-    }
 }

@@ -11,13 +11,8 @@ public class ChangeStyle  extends Command {
 
         JMenuItem source = (JMenuItem) event.getSource();
         if (Main.editor.styledLanguages.containsKey(source.getName())) {
-
             Main.editor.setCurrentLanguageStyle(Main.editor.styledLanguages.get(source.getName()));
-            System.out.println("Language: " + source.getName());
         }
     }
 
-    public void undoAction(ActionEvent event) {
-
-    }
 }

@@ -8,10 +8,7 @@ public class Cut extends Command {
 
 
     public void actionPerformed(ActionEvent event){
-
-    }
-
-    public void undoAction(ActionEvent event){
-
+        Main.editor.canvas.createMementoState();
+        Main.editor.canvas.cut();
     }
 }

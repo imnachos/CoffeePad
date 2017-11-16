@@ -10,6 +10,4 @@ public abstract class Command extends AbstractAction{
 
     public abstract void actionPerformed(ActionEvent event);
 
-    public abstract void undoAction(ActionEvent event);
-
 }

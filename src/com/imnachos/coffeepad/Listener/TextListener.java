@@ -2,111 +2,34 @@ package com.imnachos.coffeepad.Listener;
 
 
 import com.imnachos.coffeepad.Editor.TextContainer;
-import com.imnachos.coffeepad.Engine.Settings;
-import com.imnachos.coffeepad.Style.LanguageStyle;
 
-import javax.swing.text.*;
-import java.awt.*;
-import java.util.*;
-import java.util.List;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
-public class TextListener extends DocumentFilter {
+public class TextListener implements DocumentListener {
 
-    private TextContainer textPane;
-    private StyledDocument styledDocument;
-    
-    private LanguageStyle currentStyle;
-    private StyleContext styleContext;
+    /**
+     * Text listener for the canvas(container).
+     * @param container
+     */
+    public TextListener(TextContainer container) {
 
-    public TextListener (TextContainer container){
-
-        textPane = container;
-        styledDocument =  textPane.getStyledDocument();
-        MutableAttributeSet inputAttributes = textPane.getInputAttributes();
-
-        StyleConstants.setForeground(inputAttributes, Settings.DEFAULT_COLOR);
-        StyleConstants.setFontFamily(inputAttributes, Font.MONOSPACED);
-        styledDocument.setCharacterAttributes(0, styledDocument.getLength() + 1, inputAttributes, false);
-
-        styleContext = new StyleContext();
 
     }
-
-
-    //TODO EXCEPTIONS
 
     @Override
-    public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
-        super.insertString(fb, offset, text, attr);
-        System.out.println("text: " + text);
-        if(text.equals("{")){
-            super.insertString(fb, offset, "}", attr);
-        }
-    }
+    public void insertUpdate(DocumentEvent documentEvent) {
 
-    //TODO EXCEPTIONS
+    }
 
     @Override
-    public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
-        super.remove(fb, offset, length);
-    }
+    public void removeUpdate(DocumentEvent documentEvent) {
 
-    //TODO EXCEPTIONS
+    }
 
     @Override
-    public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-
-        super.replace(fb, offset, length, text, attrs);
-
-        currentStyle.keywordColors.forEach((key, value) -> {
-            int startIndex = offset - key.length();
-            if (startIndex >= 0) {
-
-                try {
-                    String last = fb.getDocument().getText(startIndex, key.length()).trim();
-
-                    //TODO EXCEPTIONS
-                    if (currentStyle.hasStyleForKey(last)) {
-
-                        //TODO USE STYLES
-                        AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, value);
-                        styledDocument.setCharacterAttributes(startIndex, startIndex + key.length(), styleAttributes, false);
-                    }
-                }catch(Exception exception){
-                    exception.printStackTrace();
-                    //TODO EXCEPTION
-                }
-            }
-
-        });
-
+    public void changedUpdate(DocumentEvent documentEvent) {
     }
 
-    
-    public void setCurrentStyle(LanguageStyle currentStyle) {
-        this.currentStyle = currentStyle;
-        styleContext = new StyleContext();
-
-        System.out.println("setCurrentStyle to: " + currentStyle.languageName);
-        currentStyle.keywordColors.forEach((key, value) -> {
-            /*
-            Style defaultStyle = styleContext.getStyle(StyleContext.DEFAULT_STYLE);
-           Style style = textPane.addStyle(key, defaultStyle);
-           StyleConstants.setForeground(style, value);
-           StyleConstants.setFontFamily(style, Font.MONOSPACED);
-           StyleConstants.setFontSize(style, 14);
-           styleContext.addStyle(key, style);
-
-           AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, value);
-           style.setResolveParent(styleAttributes);
-        */
-
-        });
-
-
-    }
-
-
-    
 
 }

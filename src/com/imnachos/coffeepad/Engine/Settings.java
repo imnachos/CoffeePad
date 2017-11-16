@@ -4,10 +4,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Settings {
@@ -26,8 +23,9 @@ public class Settings {
     public static final String LABEL_EDIT = "Edit";
     public static final String LABEL_STYLE = "Style";
 
+    private static final String LABEL_NEW = "New";
     private static final String LABEL_SAVE = "Save";
-    public static final String LABEL_SAVE_AS = "Save as";
+    private static final String LABEL_SAVE_AS = "Save as";
     private static final String LABEL_OPEN = "Open";
 
     private static final String LABEL_COPY = "Copy";
@@ -40,19 +38,20 @@ public class Settings {
 
     private static final String LABEL_EXIT = "Exit";
 
-    public static final Color DEFAULT_BACKGROUND = new Color(43, 43,43 );
-    public static final Color DEFAULT_COLOR = new Color(168, 182,173 );
+    public static final Color DEFAULT_BACKGROUND = new Color(43, 43,43);
+    //public static final Color DEFAULT_COLOR = new Color(168, 182,173);
+    public static final Color DEFAULT_COLOR = new Color(0, 0,0);
+    public static final Color GUI_COLOR = new Color(49, 51,53);
+    public static final Color GUI_FONT_COLOR = new Color(96, 99,102);
+    public static final Color TOOLBAR_FONT_COLOR = new Color(147, 186,166);
 
     public static final String WINDOW_ICON = "data/images/icon.png";
-    
-    //public static final Font DEFAULT_FONT;
-    
-    public static final int DEFAULT_FONT_SIZE = 12;
 
     /*
         File menu function shortcuts.
     */
     public static final Map<String, Integer> FUNCTIONS_FILE = new LinkedHashMap<String, Integer>() {{
+        put(LABEL_NEW, KeyEvent.VK_N);
         put(LABEL_SAVE, KeyEvent.VK_S);
         put(LABEL_SAVE_AS, KeyEvent.VK_S);
         put(LABEL_OPEN, KeyEvent.VK_L);

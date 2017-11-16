@@ -8,8 +8,4 @@ public class Exit extends Command {
         System.exit(0);
     }
 
-    public void undoAction(ActionEvent event){
-
-    }
-
 }

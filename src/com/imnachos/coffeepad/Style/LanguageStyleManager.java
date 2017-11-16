@@ -1,13 +1,5 @@
 package com.imnachos.coffeepad.Style;
 
-import com.imnachos.coffeepad.Editor.Editor;
-import com.imnachos.coffeepad.Editor.TextContainer;
-import com.imnachos.coffeepad.Engine.Main;
-import com.imnachos.coffeepad.Util.LogManager;
-
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -16,13 +8,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class LanguageStyleManager {
 
     private static Map<String, LanguageStyle> styledLanguages; //TODO REFACTOR THIS SYSTEM
 
+    /**
+     * Starts the parsing of the files and returns a Map that consists of Language-LanguageStyle
+     * @return
+     */
     public static Map<String, LanguageStyle> loadStyles(){
 
         styledLanguages = new HashMap<String, LanguageStyle>();
@@ -34,12 +28,16 @@ public class LanguageStyleManager {
             //TODO CREATE EXCEPTION
             exception.printStackTrace();
         }
-
-
         return styledLanguages;
 
     }
 
+
+    /**
+     * Parses all of the styles in the /data/styles/ folder.
+     * It creates a key-color map.
+     * @param filePath
+     */
     private static void processStyleFile(Path filePath){
         String languageName = filePath.getFileName().toString().substring(0, filePath.getFileName().toString().indexOf("."));
         Map<String, Color> keywordColors = new HashMap<String, Color>();
@@ -82,15 +80,15 @@ public class LanguageStyleManager {
 
     }
 
+    /**
+     * Creates the language style based on the key-color and adds the LanguageStyle to styledLanguages.
+     * @param language
+     * @param keywordColors
+     */
     private static void generateLanguageStyle(String language, Map<String, Color> keywordColors){
-
         LanguageStyle languageStyle = new LanguageStyle(language, keywordColors);
         styledLanguages.putIfAbsent(language, languageStyle);
-
     }
 
-    public static void setStyleForLanguage(TextContainer textContainer){
 
-
-    }
 }

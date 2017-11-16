@@ -1,6 +1,6 @@
 package com.imnachos.coffeepad.Exceptions;
 
-public class FileOpenException extends Exception {
+class FileOpenException extends Exception {
 
 
 }

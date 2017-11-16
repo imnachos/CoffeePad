@@ -2,88 +2,66 @@ package com.imnachos.coffeepad.Editor;
 
 import com.imnachos.coffeepad.Commands.ChangeStyle;
 import com.imnachos.coffeepad.Commands.Command;
-import com.imnachos.coffeepad.Commands.Saveas;
 import com.imnachos.coffeepad.Engine.Settings;
-import com.imnachos.coffeepad.Listener.TextListener;
 import com.imnachos.coffeepad.Style.LanguageStyle;
 import com.imnachos.coffeepad.Style.LanguageStyleManager;
-import com.imnachos.coffeepad.Util.CommandManager;
-import com.imnachos.coffeepad.Util.LogManager;
+import com.imnachos.coffeepad.Windows.SaveAs;
 
-import javax.sound.sampled.Line;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Editor extends JFrame implements ActionListener{
 
-    private JMenuBar topBar;
+    private JMenuBar toolbar;
 
     //Menu
     private JMenu MENU_FILE;
     private JMenu MENU_EDIT;
     private JMenu MENU_STYLE;
 
-    //Text util
-    public String clipboard;
-    
-    //JTextPane
-    public TextContainer textContainer;
-    private JScrollPane scrollbar;
 
-    /*
-        Panel that contains the TextContainer. It provides de background color.
+    /**
+         textPanel contains the TextContainer, which is the canvas where the text is typed.
      */
     private JPanel textPanel;
-    
+    public TextContainer canvas;
+    private JScrollPane scrollbars;
+    private LineNumberPanel lineNumberPanel;
+    private ProjectTree projectTree;
+
     private boolean isFileSaved;
     private File currentFile;
-    public CommandManager commandManager;
 
-    public int fontSize;
 
-    public LanguageStyle currentLanguageStyle;
     public Map<String, LanguageStyle> styledLanguages;
 
 
-	/*
+	/**
         Initialization of the text editor.
      */
     public Editor(){
         super(Settings.DEFAULT_TITLE);
-        isFileSaved = false;
-        ImageIcon windowIcon = new ImageIcon(Settings.WINDOW_ICON);
-        this.setIconImage(windowIcon.getImage());
-        setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
-        setOnCloseProperty();
-        Container contentPane = getContentPane();
-        contentPane.setLayout(new CardLayout());
-        contentPane.setForeground(Settings.DEFAULT_BACKGROUND);
+        initialize();
 
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            LogManager.printLog("Unhandled exception. Todo.");
-            e.printStackTrace();
-        }
-        styledLanguages = new HashMap<String, LanguageStyle>();
         styledLanguages = LanguageStyleManager.loadStyles();
-        commandManager = new CommandManager();
 
-        textPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-        textPanel.setBackground(Settings.DEFAULT_BACKGROUND);
-        textContainer = new TextContainer();
-        scrollbar = new JScrollPane(textContainer);
-        scrollbar.setBorder(null);
-        TextLineNumber numbering = new TextLineNumber(textContainer);
-        textContainer.add(numbering);
-        textPanel.add(textContainer, BorderLayout.WEST);
-        add(textPanel, BorderLayout.WEST);
+        textPanel = new JPanel(new BorderLayout());
+        canvas = new TextContainer();
+        scrollbars = new JScrollPane(canvas, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
+        lineNumberPanel = new LineNumberPanel(canvas);
+        scrollbars.setRowHeaderView(lineNumberPanel);
+
+        textPanel.add(scrollbars, BorderLayout.CENTER);
+        textPanel.add(lineNumberPanel, BorderLayout.WEST);
+
+        //projectTree = new ProjectTree();
+        //add(projectTree, BorderLayout.LINE_START);
+
+        add(textPanel, BorderLayout.CENTER);
 
         //Menu items
         MENU_FILE = new JMenu(Settings.LABEL_FILE);
@@ -93,26 +71,39 @@ public class Editor extends JFrame implements ActionListener{
         MENU_STYLE = new JMenu(Settings.LABEL_STYLE);
         buildStyleMenu(MENU_STYLE, styledLanguages);
 
-
         //File bar
-        topBar = new JMenuBar();
-        topBar.add(MENU_FILE);
-        topBar.add(MENU_EDIT);
-        topBar.add(MENU_STYLE);
-        setJMenuBar(topBar);
-
-        //Additional
-
-        clipboard = "";
-
-        //Text stuff
-
-        fontSize = Settings.DEFAULT_FONT_SIZE;
+        toolbar = new JMenuBar();
+        toolbar.add(MENU_FILE);
+        toolbar.add(MENU_EDIT);
+        toolbar.add(MENU_STYLE);
+        setJMenuBar(toolbar);
 
         setVisible(true);
+
+    }
+
+    /**
+     * Sets up the JFrame
+     */
+    private void initialize(){
+        isFileSaved = false;
+        ImageIcon windowIcon = new ImageIcon(Settings.WINDOW_ICON);
+        this.setIconImage(windowIcon.getImage());
+        setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
+        setOnCloseProperty();
+        getContentPane().setLayout(new CardLayout());
+        getContentPane().setForeground(Settings.DEFAULT_BACKGROUND);
+
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            System.out.println("Unhandled exception. Todo.");
+            //TODO EXCEPTIONS
+            e.printStackTrace();
+        }
     }
       
-    /*
+    /**
         Construct menus from a given map for a JMenu
      */
     private void buildMenu(JMenu menu, Map<String, Integer> functionMap){
@@ -131,7 +122,7 @@ public class Editor extends JFrame implements ActionListener{
                 item.setIcon(icon);
 
             }catch(Exception e){
-                LogManager.printLog("Unhandled exception. Todo."); //TODO EXCEPTION
+                System.out.println("Unhandled exception. Todo."); //TODO EXCEPTION
                 e.printStackTrace();
             }
             menu.add(item);
@@ -139,7 +130,7 @@ public class Editor extends JFrame implements ActionListener{
     }
 
 
-    /*
+    /**
         Construct menus from a given map for a JMenu
      */
     private void buildStyleMenu(JMenu menu, Map<String, LanguageStyle> languageList){
@@ -152,7 +143,7 @@ public class Editor extends JFrame implements ActionListener{
                 item.setText(key.languageName);
 
             }catch(Exception e){
-                LogManager.printLog("Unhandled exception. Todo."); //TODO EXCEPTION
+                System.out.println("Unhandled exception. Todo."); //TODO EXCEPTION
                 e.printStackTrace();
             }
             menu.add(item);
@@ -160,44 +151,41 @@ public class Editor extends JFrame implements ActionListener{
     }
 
 
-    /*
+    /**
         Implementation of actionPerformed method.
      */
     public void actionPerformed(ActionEvent event) {
         JMenuItem item = (JMenuItem) event.getSource();
         item.getAction().actionPerformed(event);
-
     }
 
-    /*
+    /**
      * Add a On Close listener
      */
     private void setOnCloseProperty(){
     	this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     	addWindowListener(new WindowAdapter() {
     	    
-    		//Use lambdas
+    		//TODO Use lambdas
+
     		@Override
     	    public void windowClosing(WindowEvent we){ 
-    	        String ObjButtons[] = {"Exit","Save"};
+    	        String objButtons[] = {"Exit","Save"};
     	        
     	        if(!isFileSaved){
-    	        	int choice = JOptionPane.showOptionDialog(null, "Exit without saving?", "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+    	        	int choice = JOptionPane.showOptionDialog(null, "Exit without saving?", "Warning",
+                                    JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,null, objButtons, objButtons[1]);
         	        
         	        if(choice == JOptionPane.YES_OPTION){
         	            System.exit(0);
         	        }else{
-        	        	new Saveas();
+                        new SaveAs();
         	        }
     	        }else{
     	        	System.exit(0);
     	        }
     	    }
     	});
-    }
-
-    public void addLanguageStyle(LanguageStyle style){
-        styledLanguages.putIfAbsent(style.languageName, style);
     }
 
     public boolean isFileSaved() {
@@ -216,13 +204,8 @@ public class Editor extends JFrame implements ActionListener{
 		this.currentFile = currentFile;
 	}
 
-    public LanguageStyle getCurrentLanguageStyle() {
-        return currentLanguageStyle;
-    }
-
     public void setCurrentLanguageStyle(LanguageStyle currentLanguageStyle) {
-        this.currentLanguageStyle = currentLanguageStyle;
-        textContainer.textListener.setCurrentStyle(currentLanguageStyle);
+        canvas.setCurrentStyle(currentLanguageStyle);
     }
 
 
