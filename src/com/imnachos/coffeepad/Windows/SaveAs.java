@@ -4,10 +4,13 @@ import com.imnachos.coffeepad.Engine.Main;
 import com.imnachos.coffeepad.Util.FileManager;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+
+import static com.imnachos.coffeepad.Engine.Main.editor;
 
 public class SaveAs extends JFrame implements ActionListener {
 
@@ -20,12 +23,19 @@ public class SaveAs extends JFrame implements ActionListener {
 
         if(choice == JFileChooser.APPROVE_OPTION) {
         	File outputFile = fileChooser.getSelectedFile();
-        	boolean wasFileSaved = FileManager.saveFile(outputFile, Main.editor.canvas.getText());
-        	
+            boolean wasFileSaved = false;
+        	try{
+                 wasFileSaved = FileManager.saveFile(outputFile,
+                        editor.canvas.getStyledDocument().getText(0, Main.editor.canvas.getStyledDocument().getLength()));
+            }catch(Exception e){
+        	    e.printStackTrace();
+        	    //TODO EXCEPTION
+            }
+
         	if(wasFileSaved){
-        		Main.editor.setFileSaved(true);
-        		Main.editor.setTitle(outputFile.getName());
-        		Main.editor.setCurrentFile(outputFile);
+        		editor.setFileSaved(true);
+        		editor.setTitle(outputFile.getName());
+        		editor.setCurrentFile(outputFile);
         	}
         }
 

@@ -15,17 +15,8 @@ import java.util.Map;
 
 public class Editor extends JFrame implements ActionListener{
 
-    private JMenuBar toolbar;
-
-    //Menu
-    private JMenu MENU_FILE;
-    private JMenu MENU_EDIT;
-    private JMenu MENU_STYLE;
-
-
-    /**
-         textPanel contains the TextContainer, which is the canvas where the text is typed.
-     */
+    private Toolbar toolbar;
+    private Footer footer;
     private JPanel textPanel;
     public TextContainer canvas;
     private JScrollPane scrollbars;
@@ -34,7 +25,6 @@ public class Editor extends JFrame implements ActionListener{
 
     private boolean isFileSaved;
     private File currentFile;
-
 
     public Map<String, LanguageStyle> styledLanguages;
 
@@ -46,37 +36,25 @@ public class Editor extends JFrame implements ActionListener{
         super(Settings.DEFAULT_TITLE);
         initialize();
 
+        projectTree = new ProjectTree();
         styledLanguages = LanguageStyleManager.loadStyles();
+        toolbar = new Toolbar(styledLanguages);
+        setJMenuBar(toolbar);
+        footer = new Footer();
 
         textPanel = new JPanel(new BorderLayout());
         canvas = new TextContainer();
         scrollbars = new JScrollPane(canvas, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
         lineNumberPanel = new LineNumberPanel(canvas);
         scrollbars.setRowHeaderView(lineNumberPanel);
 
         textPanel.add(scrollbars, BorderLayout.CENTER);
         textPanel.add(lineNumberPanel, BorderLayout.WEST);
 
-        projectTree = new ProjectTree();
+
         add(projectTree, BorderLayout.LINE_START);
-
         add(textPanel, BorderLayout.CENTER);
-
-        //Menu items
-        MENU_FILE = new JMenu(Settings.LABEL_FILE);
-        buildMenu(MENU_FILE, Settings.FUNCTIONS_FILE);
-        MENU_EDIT = new JMenu(Settings.LABEL_EDIT);
-        buildMenu(MENU_EDIT, Settings.FUNCTIONS_EDIT);
-        MENU_STYLE = new JMenu(Settings.LABEL_STYLE);
-        buildStyleMenu(MENU_STYLE, styledLanguages);
-
-        //File bar
-        toolbar = new JMenuBar();
-        toolbar.add(MENU_FILE);
-        toolbar.add(MENU_EDIT);
-        toolbar.add(MENU_STYLE);
-        setJMenuBar(toolbar);
+        add(footer, BorderLayout.SOUTH);
 
         setVisible(true);
 
@@ -92,7 +70,6 @@ public class Editor extends JFrame implements ActionListener{
         setSize(Settings.WINDOW_WIDTH, Settings.WINDOW_HEIGHT);
         setOnCloseProperty();
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().setForeground(Settings.DEFAULT_BACKGROUND);
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -101,53 +78,6 @@ public class Editor extends JFrame implements ActionListener{
             //TODO EXCEPTIONS
             e.printStackTrace();
         }
-    }
-      
-    /**
-        Construct menus from a given map for a JMenu
-     */
-    private void buildMenu(JMenu menu, Map<String, Integer> functionMap){
-        functionMap.forEach((key, value) -> {
-            JMenuItem item = new JMenuItem(key);
-            String classPath = "com.imnachos.coffeepad.Commands." + key;
-            classPath = classPath.replaceAll("\\s+","");
-            try{
-                Command action = (Command) Class.forName(classPath).newInstance();
-                item.setAction(action);
-                item.setAccelerator(KeyStroke.getKeyStroke(value, ActionEvent.CTRL_MASK));
-                item.setName(key);
-                item.setText(key);
-                Image iconImage = new ImageIcon("data/images/" + key + ".png").getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
-                Icon icon = new ImageIcon(iconImage);
-                item.setIcon(icon);
-
-            }catch(Exception e){
-                System.out.println("Unhandled exception. Todo."); //TODO EXCEPTION
-                e.printStackTrace();
-            }
-            menu.add(item);
-        });
-    }
-
-
-    /**
-        Construct menus from a given map for a JMenu
-     */
-    private void buildStyleMenu(JMenu menu, Map<String, LanguageStyle> languageList){
-        languageList.forEach((value, key) -> {
-            JMenuItem item = new JMenuItem(key.languageName);
-            try{
-                Command action = ChangeStyle.class.newInstance();
-                item.setAction(action);
-                item.setName(key.languageName);
-                item.setText(key.languageName);
-
-            }catch(Exception e){
-                System.out.println("Unhandled exception. Todo."); //TODO EXCEPTION
-                e.printStackTrace();
-            }
-            menu.add(item);
-        });
     }
 
 
@@ -206,6 +136,10 @@ public class Editor extends JFrame implements ActionListener{
 
     public void setCurrentLanguageStyle(LanguageStyle currentLanguageStyle) {
         canvas.setCurrentStyle(currentLanguageStyle);
+    }
+
+    public void updateFooter(int line, int column){
+        footer.updateCaretPosition(line, column);
     }
 
 

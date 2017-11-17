@@ -1,6 +1,5 @@
 package com.imnachos.coffeepad.Editor;
 
-import com.imnachos.coffeepad.Engine.Settings;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -11,15 +10,22 @@ import java.io.File;
 class ProjectTree extends JPanel {
     private JTree tree;
     private DefaultMutableTreeNode root;
+    private JFrame window;
+
+    private JScrollPane scrollPane;
 
     public ProjectTree() {
+        getRootPane();
+        window = (JFrame) SwingUtilities.windowForComponent(this);
         root = new DefaultMutableTreeNode("root", true);
         getList(root, new File(System.getProperty("user.dir")));
         setLayout(new BorderLayout());
         tree = new JTree(root);
         tree.setRootVisible(false);
         tree.setCellRenderer(new FileTreeCellRenderer());
-        add(new JScrollPane(tree), BorderLayout.LINE_START);
+        scrollPane = new JScrollPane(tree);
+
+        add(scrollPane, BorderLayout.LINE_START);
     }
 
     private void getList(DefaultMutableTreeNode node, File file) {
@@ -31,16 +37,18 @@ class ProjectTree extends JPanel {
             }
         }else {
             DefaultMutableTreeNode child = new DefaultMutableTreeNode(file);
-
             node.add(child);
 
-            File fList[] = file.listFiles();
-            for (File aFList : fList) {
+            File fileList[] = file.listFiles();
+            for (File aFList : fileList) {
                 getList(child, aFList);
             }
         }
     }
 
+    /**
+     * Method to change the folder names
+     */
     protected class FileTreeCellRenderer extends DefaultTreeCellRenderer {
 
         @Override
