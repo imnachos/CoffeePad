@@ -31,13 +31,9 @@ class LineNumberPanel extends JPanel implements CaretListener, DocumentListener 
         this.canvas = component;
 
         setFont(component.getFont());
-        //setForeground(Settings.GUI_COLOR);
-        //setBackground(Settings.GUI_COLOR);
         setBorderGap(5);
-        //setCurrentLineForeground(Settings.GUI_FONT_COLOR);
         setDigitAlignment(RIGHT);
         setMinimumDisplayDigits(3);
-
         component.getDocument().addDocumentListener(this);
         component.addCaretListener(this);
     }
@@ -53,10 +49,6 @@ class LineNumberPanel extends JPanel implements CaretListener, DocumentListener 
 
     private Color getCurrentLineForeground() {
         return currentLineForeground == null ? getForeground() : currentLineForeground;
-    }
-
-    public float getDigitAlignment() {
-        return digitAlignment;
     }
 
     private void setDigitAlignment(float digitAlignment) {
@@ -87,6 +79,10 @@ class LineNumberPanel extends JPanel implements CaretListener, DocumentListener 
         }
     }
 
+    /**
+     * Method to draw the text
+     * @param g
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -191,8 +187,10 @@ class LineNumberPanel extends JPanel implements CaretListener, DocumentListener 
         return y - descent;
     }
 
-    /*
-        Caret listener, revisar
+
+    /**
+     * Caret listener
+     * @param e
      */
     @Override
     public void caretUpdate(CaretEvent e) {

@@ -3,6 +3,7 @@ package com.imnachos.coffeepad.Editor;
 import com.imnachos.coffeepad.Engine.Main;
 import com.imnachos.coffeepad.Engine.Settings;
 import com.imnachos.coffeepad.Filter.TextFilter;
+import com.imnachos.coffeepad.Listener.FooterListener;
 import com.imnachos.coffeepad.Listener.FormatKeyListener;
 import com.imnachos.coffeepad.Listener.TextListener;
 import com.imnachos.coffeepad.Memento.Caretaker;
@@ -25,7 +26,7 @@ public class TextContainer extends JTextPane{
 
     private TextListener textListener;
     private TextFilter textFilter;
-
+    private FooterListener footerListener;
     private LanguageStyle currentStyle;
     private StyleContext styleContext;
     private LanguageStyle defaultStyle;
@@ -52,6 +53,8 @@ public class TextContainer extends JTextPane{
         getStyledDocument().addDocumentListener(textListener);
         textFilter = new TextFilter(this);
         ((AbstractDocument) getDocument()).setDocumentFilter(textFilter);
+        footerListener = new FooterListener();
+        addCaretListener(footerListener);
 
         defaultAttrs = getInputAttributes();
 
@@ -102,9 +105,9 @@ public class TextContainer extends JTextPane{
      * @throws BadLocationException
      */
     private void processContextFormat(List lastword) throws BadLocationException{
-        int previousWordStart = Utilities.getPreviousWord(this, getCaretPosition());
-        //String previousWord = getText(previousWordStart, (int)lastword.get(2) -1);
-        //System.out.println("previousWord: " + previousWord);
+        /*int previousWordStart = Utilities.getPreviousWord(this, getCaretPosition());
+        String previousWord = getText(previousWordStart, (int)lastword.get(2) -1);
+        System.out.println("previousWord: " + previousWord);*/
 
     }
 
@@ -227,6 +230,49 @@ public class TextContainer extends JTextPane{
         caretaker.addMemento(originator.storeInMemento());
         savedStates++;
         currentState++;
+    }
+
+
+    public void updateCaretPosition(int line, int column){
+        Main.editor.updateFooter(line, column);
+
+    }
+
+
+    /**
+     *  Get offset
+     * @param offset
+     * @return
+     * @throws BadLocationException
+     */
+    public int getLineOfOffset(int offset) throws BadLocationException {
+        Document doc = getDocument();
+        if (offset < 0) {
+            throw new BadLocationException("Can't translate offset to line", -1);
+        } else if (offset > doc.getLength()) {
+            throw new BadLocationException("Can't translate offset to line", doc.getLength() + 1);
+        } else {
+            Element map = doc.getDefaultRootElement();
+            return map.getElementIndex(offset);
+        }
+    }
+
+    /**
+     *  Start of line offset
+     * @param line
+     * @return
+     * @throws BadLocationException
+     */
+    public int getLineStartOffset(int line) throws BadLocationException {
+        Element map = this.getDocument().getDefaultRootElement();
+        if (line < 0) {
+            throw new BadLocationException("Negative line", -1);
+        } else if (line >= map.getElementCount()) {
+            throw new BadLocationException("No such line", getDocument().getLength() + 1);
+        } else {
+            Element lineElem = map.getElement(line);
+            return lineElem.getStartOffset();
+        }
     }
 
 
