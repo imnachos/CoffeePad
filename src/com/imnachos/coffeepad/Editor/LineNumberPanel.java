@@ -41,7 +41,7 @@ class LineNumberPanel extends JPanel implements CaretListener, DocumentListener 
     private void setBorderGap(int borderGap) {
         this.borderGap = borderGap;
         Border inner = new EmptyBorder(0, borderGap, 0, borderGap);
-        setBorder( new CompoundBorder(OUTER, inner) );
+        setBorder( new CompoundBorder(OUTER, inner));
         lastDigits = 0;
         setPreferredWidth();
     }
@@ -60,6 +60,9 @@ class LineNumberPanel extends JPanel implements CaretListener, DocumentListener 
         setPreferredWidth();
     }
 
+    /**
+     * Stablished width based on digits
+     */
     private void setPreferredWidth() {
         Element root = canvas.getDocument().getDefaultRootElement();
         int lines = root.getElementCount();
@@ -110,7 +113,7 @@ class LineNumberPanel extends JPanel implements CaretListener, DocumentListener 
                 int yCount = y;
 
                 while(lineCount > 0){
-                    //g.drawString(String.valueOf(lineCount), x, yCount);
+                    g.drawString(String.valueOf(lineCount), x, yCount);
                     //TODO FIX LINE NUMBER DRAWING
                     yCount = yCount - 20;
                     lineCount = lineCount - 1;

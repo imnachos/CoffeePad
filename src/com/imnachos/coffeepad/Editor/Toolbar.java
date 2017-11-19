@@ -12,7 +12,6 @@ import java.util.Map;
 
 public class Toolbar extends JMenuBar {
 
-    //Menu
     private JMenu MENU_FILE;
     private JMenu MENU_EDIT;
     private JMenu MENU_STYLE;
@@ -53,7 +52,7 @@ public class Toolbar extends JMenuBar {
                 item.setIcon(icon);
 
             }catch(Exception e){
-                System.out.println("Unhandled exception. Todo."); //TODO EXCEPTION
+                //TODO EXCEPTION
                 e.printStackTrace();
             }
             menu.add(item);
@@ -73,8 +72,7 @@ public class Toolbar extends JMenuBar {
                 item.setName(key.languageName);
                 item.setText(key.languageName);
 
-            }catch(Exception e){
-                System.out.println("Unhandled exception. Todo."); //TODO EXCEPTION
+            }catch(Exception e){//TODO EXCEPTION
                 e.printStackTrace();
             }
             menu.add(item);

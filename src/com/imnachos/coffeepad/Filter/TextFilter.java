@@ -16,10 +16,7 @@ public class TextFilter extends DocumentFilter{
 
     @Override
     public void insertString(DocumentFilter.FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
-
-
         super.insertString(fb,offset,text,attr);
-
     }
 
     @Override
@@ -28,14 +25,8 @@ public class TextFilter extends DocumentFilter{
         super.replace(fb, offset, length, text, attrs);
     }
 
-
-
     @Override
     public void remove(FilterBypass fb, int offset, int length) throws BadLocationException {
         super.remove(fb, offset, length);
-
     }
-
-
-
 }

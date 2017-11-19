@@ -74,7 +74,7 @@ public class TextContainer extends JTextPane{
     /**
      * Manages the format of the last word or character.
      */
-    public void applyFormat() throws BadLocationException{
+    public void applyFormat(){
 
         List lastWord = checkLastWord();
 
@@ -84,17 +84,24 @@ public class TextContainer extends JTextPane{
             int wordStart = (int) lastWord.get(1);
             int wordEnd = (int) lastWord.get(2);
 
-            if(word.length() != 1){
-                if(currentStyle.hasStyleForKey(word)){
-                    Color wordStyle = currentStyle.getStyleForKey(word);
-                    AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, wordStyle);
-                    getStyledDocument().setCharacterAttributes(wordStart, wordEnd, styleAttributes, false);
+            try{
+
+                if(word.length() != 1){
+                    if(currentStyle.hasStyleForKey(word)){
+                        Color wordStyle = currentStyle.getStyleForKey(word);
+                        AttributeSet styleAttributes = styleContext.addAttribute(styleContext.getEmptySet(), StyleConstants.Foreground, wordStyle);
+                        getStyledDocument().setCharacterAttributes(wordStart, wordEnd, styleAttributes, false);
+                    }else{
+                        processContextFormat(lastWord);
+                    }
                 }else{
-                    processContextFormat(lastWord);
+                    processAutoComplete(lastWord);
                 }
-            }else{
-                processAutoComplete(lastWord);
+
+            }catch(BadLocationException e){
+                JOptionPane.showMessageDialog();
             }
+
 
         }
     }

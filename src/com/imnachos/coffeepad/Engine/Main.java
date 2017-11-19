@@ -13,6 +13,9 @@ public class Main{
         editor = new Editor();
     }
 
+    /**
+     * Calculates window size based on screen's resolution and some proportions (hardcoded for now)
+     */
     private static void calculateWindowSize(){
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double resolutionWidth = screenSize.getWidth();
