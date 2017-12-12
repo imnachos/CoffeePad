@@ -21,9 +21,7 @@ public class FormatKeyListener extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-
         canvas.applyFormat();
-
     }
 
 }

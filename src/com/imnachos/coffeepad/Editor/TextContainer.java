@@ -99,7 +99,8 @@ public class TextContainer extends JTextPane{
                 }
 
             }catch(BadLocationException e){
-                JOptionPane.showMessageDialog();
+                JOptionPane.showMessageDialog(new JFrame(), Settings.ERROR_CARET_LOCATION, Settings.ERROR_WINDOW_TITLE, JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
             }
 
 
@@ -146,8 +147,8 @@ public class TextContainer extends JTextPane{
                 return returnVal;
             }
 
-        } catch (Exception e) {
-            //TODO EXCEPTION
+        } catch (BadLocationException e) {
+            JOptionPane.showMessageDialog(new JFrame(), Settings.ERROR_CARET_LOCATION, Settings.ERROR_WINDOW_TITLE, JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
 
@@ -281,9 +282,4 @@ public class TextContainer extends JTextPane{
             return lineElem.getStartOffset();
         }
     }
-
-
-
-
-
 }

@@ -1,8 +1,13 @@
 package com.imnachos.coffeepad.Style;
 
+import com.imnachos.coffeepad.Engine.Settings;
+
+import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,9 +29,10 @@ public class LanguageStyleManager {
             Files.newDirectoryStream(Paths.get("data/styles"),
                     path -> path.toString().endsWith(".ini"))
                     .forEach(LanguageStyleManager::processStyleFile);
-        }catch(Exception exception){
-            //TODO CREATE EXCEPTION
-            exception.printStackTrace();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(new JFrame(), Settings.ERROR_IO_EXCEPTION, Settings.ERROR_WINDOW_TITLE, JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+            e.printStackTrace();
         }
         return styledLanguages;
 
@@ -70,9 +76,10 @@ public class LanguageStyleManager {
                 textLine = bufferedReader.readLine();
             }
 
-        }catch(Exception exception){
-            exception.printStackTrace();
-            //TODO CREATE EXCEPTION
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(new JFrame(), Settings.ERROR_IO_EXCEPTION, Settings.ERROR_WINDOW_TITLE, JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+            e.printStackTrace();
 
         }
 

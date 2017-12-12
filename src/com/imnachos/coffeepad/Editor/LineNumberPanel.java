@@ -113,7 +113,7 @@ class LineNumberPanel extends JPanel implements CaretListener, DocumentListener 
                 int yCount = y;
 
                 while(lineCount > 0){
-                    g.drawString(String.valueOf(lineCount), x, yCount);
+                    //g.drawString(String.valueOf(lineCount), x, yCount);
                     //TODO FIX LINE NUMBER DRAWING
                     yCount = yCount - 20;
                     lineCount = lineCount - 1;

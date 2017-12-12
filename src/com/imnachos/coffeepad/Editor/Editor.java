@@ -74,8 +74,7 @@ public class Editor extends JFrame implements ActionListener{
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
-            System.out.println("Unhandled exception. Todo.");
-            //TODO EXCEPTIONS
+            JOptionPane.showMessageDialog(new JFrame(), Settings.ERROR_SYSTEM_THEME, Settings.ERROR_WINDOW_TITLE, JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
