@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="769c9aa3-00f6-41ee-bdcf-a71da5781e2b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Footer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Toolbar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FooterListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Exceptions/BadCaretLocationException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Exceptions/FileOpenException.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/New.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/New.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Open.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Open.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Editor.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Editor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/LineNumberPanel.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/LineNumberPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/ProjectTree.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/ProjectTree.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/TextContainer.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/TextContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/TextListener.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/TextListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Settings.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Settings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FooterListener.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FooterListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FormatKeyListener.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FormatKeyListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/LanguageStyleManager.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/LanguageStyleManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/FileManager.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/FileManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Windows/SaveAs.java" afterPath="$PROJECT_DIR$/src/com/imnachos/coffeepad/Windows/SaveAs.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,21 +30,20 @@
       <file leaf-file-name="Editor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Editor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="622">
-              <caret line="140" column="49" lean-forward="true" selection-start-line="140" selection-start-column="49" selection-end-line="140" selection-end-column="49" />
+            <state relative-caret-position="244">
+              <caret line="39" column="47" lean-forward="false" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
               <folding>
-                <element signature="e#4097#4098#0" expanded="true" />
-                <element signature="e#4153#4154#0" expanded="true" />
+                <marker date="1513043685526" expanded="true" signature="4196:4204" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TextContainer.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/TextContainer.java">
+      <file leaf-file-name="Settings.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="235" column="16" lean-forward="false" selection-start-line="235" selection-start-column="16" selection-end-line="235" selection-end-column="16" />
+            <state relative-caret-position="261">
+              <caret line="52" column="75" lean-forward="false" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,6 +74,7 @@
       <find>Lasword</find>
       <find>editor</find>
       <find>paintComponent</find>
+      <find>actionPerformed</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -85,13 +88,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Main.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/LineNumbering.java" />
         <option value="$PROJECT_DIR$/data/styles/java.ini" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/KeyListener.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/SpaceListener.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/CommandManager.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Windows/SaveAs.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/TextLineNumber.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/PorjectTree.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/Caretaker.java" />
@@ -102,8 +103,6 @@
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Save.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Saveas.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Selectall.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Open.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/New.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Exit.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Copy.java" />
         <option value="$PROJECT_DIR$/src/Memento/Originator.java" />
@@ -114,20 +113,25 @@
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Paste.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Cut.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/ThemeManager.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/LanguageStyleManager.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Filter/TextFilter.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/LanguageStyle.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FormatKeyListener.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Settings.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Toolbar.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/TextListener.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/CaretListener.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FooterListener.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Editor.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/TextContainer.java" />
-        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/LineNumberPanel.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/ProjectTree.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Toolbar.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Filter/TextFilter.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Main.java" />
         <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Footer.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/LineNumberPanel.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FormatKeyListener.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/New.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Open.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Windows/SaveAs.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/TextContainer.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Editor.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FooterListener.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/LanguageStyleManager.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Settings.java" />
+        <option value="$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/FileManager.java" />
       </list>
     </option>
   </component>
@@ -154,6 +158,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -166,12 +173,6 @@
               <item name="CoffeePad" type="b2602c69:ProjectViewProjectNode" />
               <item name="CoffeePad" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CoffeePad" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CoffeePad" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CoffeePad" type="b2602c69:ProjectViewProjectNode" />
@@ -203,13 +204,6 @@
               <item name="CoffeePad" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="coffeepad" type="462c0819:PsiDirectoryNode" />
-              <item name="Exceptions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CoffeePad" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CoffeePad" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="coffeepad" type="462c0819:PsiDirectoryNode" />
               <item name="Filter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -218,6 +212,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="coffeepad" type="462c0819:PsiDirectoryNode" />
               <item name="Listener" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CoffeePad" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CoffeePad" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="coffeepad" type="462c0819:PsiDirectoryNode" />
+              <item name="Memento" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CoffeePad" type="b2602c69:ProjectViewProjectNode" />
@@ -244,9 +245,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -389,57 +387,46 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.4667171" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.47276855" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17983194" sideWeight="0.34795764" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24033614" sideWeight="0.33282906" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17943338" sideWeight="0.66717094" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17983194" sideWeight="0.6520424" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18910742" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29915968" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19479166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30756304" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30756304" sideWeight="0.4969743" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24033614" sideWeight="0.33282906" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30756304" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.47276855" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29915968" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17983194" sideWeight="0.66717094" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18910742" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -455,24 +442,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/util/function/BiConsumer.class" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/JTextPane.class" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/text/Document.class" />
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Exceptions/FileOpenException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Windows/SaveAs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/JComponent.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/awt/Font.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/awt/BorderLayout.java" />
@@ -480,14 +450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Open.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -505,35 +467,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Memento/Originator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Memento/Memento.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Memento/Caretaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Redo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="8" column="51" lean-forward="false" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
-          <folding>
-            <element signature="e#250#251#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -541,10 +478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-          <folding>
-            <element signature="e#209#210#0" expanded="false" />
-            <element signature="e#250#251#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -552,7 +485,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -560,72 +492,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="12" column="72" lean-forward="false" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Paste.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/images/New.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/New.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/nio/file/DirectoryStream.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/images/New.png" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/nio/file/DirectoryStream.class" />
     <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/LogManager.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/text/AbstractDocument.class">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/text/AbstractDocument.class" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/util/List.class" />
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Cut.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="213" column="16" lean-forward="false" selection-start-line="213" selection-start-column="16" selection-end-line="213" selection-end-column="16" />
+        <state relative-caret-position="170">
+          <caret line="12" column="5" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/util/List.class">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/text/Utilities.class" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/text/JTextComponent.class" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/text/BreakIterator.class" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/JComponent.class" />
+    <entry file="file://$USER_HOME$/Downloads/BarraHerramientas.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Filter/TextFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/FileManager.java">
+    <entry file="file://$PROJECT_DIR$/data/styles/python.ini">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="60" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="60" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -636,104 +534,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Cut.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Command.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="5" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        <state relative-caret-position="153">
+          <caret line="10" column="60" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/text/Utilities.class">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Paste.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="499" column="28" lean-forward="false" selection-start-line="499" selection-start-column="28" selection-end-line="499" selection-end-column="28" />
+        <state relative-caret-position="119">
+          <caret line="9" column="45" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/text/JTextComponent.class">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Memento/Memento.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Toolbar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="744" column="15" lean-forward="false" selection-start-line="744" selection-start-column="15" selection-end-line="744" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FormatKeyListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="29" lean-forward="false" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+        <state relative-caret-position="-646">
+          <caret line="12" column="37" lean-forward="false" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/java/text/BreakIterator.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="76" column="32" lean-forward="false" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/LanguageStyleManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="62" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/LanguageStyle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-70">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/ThemeManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Memento/Originator.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Exceptions/BadCaretLocationException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/FormatManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/New.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        <state relative-caret-position="187">
+          <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Commands/Open.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="289">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Settings.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/TextContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="598">
+          <caret line="283" column="5" lean-forward="false" selection-start-line="283" selection-start-column="5" selection-end-line="283" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2180#2195#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/jre/lib/rt.jar!/javax/swing/JComponent.class">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/ProjectTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="780" column="37" lean-forward="true" selection-start-line="780" selection-start-column="37" selection-end-line="780" selection-end-column="37" />
+        <state relative-caret-position="969">
+          <caret line="61" column="21" lean-forward="false" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/BarraHerramientas.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Footer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Exceptions/FileOpenException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Filter/TextFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/LineNumberPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1374">
+          <caret line="115" column="22" lean-forward="false" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FooterListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="34" column="61" lean-forward="true" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Memento/Caretaker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -746,69 +656,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Toolbar.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FormatKeyListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="19" column="61" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="61" />
+        <state relative-caret-position="289">
+          <caret line="22" column="31" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#504#505#0" expanded="true" />
+            <element signature="e#540#541#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/LineNumberPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/LanguageStyle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1612">
-          <caret line="200" column="22" lean-forward="true" selection-start-line="200" selection-start-column="22" selection-end-line="200" selection-end-column="22" />
+        <state relative-caret-position="153">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/ThemeManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Style/LanguageStyleManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="24" column="53" lean-forward="true" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="140" column="49" lean-forward="true" selection-start-line="140" selection-start-column="49" selection-end-line="140" selection-end-column="49" />
+        <state relative-caret-position="244">
+          <caret line="39" column="47" lean-forward="false" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
           <folding>
-            <element signature="e#4097#4098#0" expanded="true" />
-            <element signature="e#4153#4154#0" expanded="true" />
+            <marker date="1513043685526" expanded="true" signature="4196:4204" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/ProjectTree.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state relative-caret-position="411">
+          <caret line="31" column="81" lean-forward="false" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Listener/FooterListener.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Util/FormatManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="33" column="26" lean-forward="false" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/Footer.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Windows/SaveAs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="32" lean-forward="false" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#186#187#0" expanded="true" />
-            <element signature="e#240#241#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Editor/TextContainer.java">
+    <entry file="file://$PROJECT_DIR$/src/com/imnachos/coffeepad/Engine/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="235" column="16" lean-forward="false" selection-start-line="235" selection-start-column="16" selection-end-line="235" selection-end-column="16" />
+        <state relative-caret-position="261">
+          <caret line="52" column="75" lean-forward="false" selection-start-line="52" selection-start-column="75" selection-end-line="52" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

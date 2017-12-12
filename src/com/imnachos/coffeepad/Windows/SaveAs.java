@@ -12,7 +12,7 @@ import java.io.File;
 
 import static com.imnachos.coffeepad.Engine.Main.editor;
 
-public class SaveAs extends JFrame implements ActionListener {
+public class SaveAs extends JFrame{
 
 
     public SaveAs(){
@@ -41,9 +41,4 @@ public class SaveAs extends JFrame implements ActionListener {
 
     }
 
-
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-
-    }
 }

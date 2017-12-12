@@ -21,11 +21,7 @@ public class Open extends Command {
             if(Main.editor.canvas.isDocumentEmpty() && selectedFile.isFile()){
             	Main.editor.canvas.setText(FileManager.openFile(selectedFile));
                 Main.editor.setTitle(selectedFile.getName());
-            }else{
-            	
             }
-
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
         }
     }
 

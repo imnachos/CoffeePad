@@ -1,6 +1,7 @@
 package com.imnachos.coffeepad.Listener;
 
 import com.imnachos.coffeepad.Editor.TextContainer;
+import com.imnachos.coffeepad.Engine.Settings;
 
 import javax.swing.*;
 import javax.swing.event.CaretEvent;
@@ -8,29 +9,29 @@ import javax.swing.event.CaretListener;
 
 public class FooterListener implements CaretListener {
 
-    private int linenum;
-    private int columnnum;
+    private int lineNumber;
+    private int columnNumber;
     private int caretPos;
     private TextContainer canvas;
 
     public void caretUpdate(CaretEvent event) {
         canvas = (TextContainer)event.getSource();
 
-        linenum = 1;
-        columnnum = 1;
+        lineNumber = 1;
+        columnNumber = 1;
 
 
         try {
             caretPos = canvas.getCaretPosition();
-            linenum = canvas.getLineOfOffset(caretPos);
-            columnnum = caretPos - canvas.getLineStartOffset(linenum);
-            linenum += 1;
+            lineNumber = canvas.getLineOfOffset(caretPos);
+            columnNumber = caretPos - canvas.getLineStartOffset(lineNumber);
+            lineNumber += 1;
         }
         catch(Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), Settings.ERROR_CARET_LOCATION, Settings.ERROR_WINDOW_TITLE, JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
-            //TODO EXCEPTION
         }
 
-        canvas.updateCaretPosition(linenum, columnnum);
+        canvas.updateCaretPosition(lineNumber, columnNumber);
     }
 }

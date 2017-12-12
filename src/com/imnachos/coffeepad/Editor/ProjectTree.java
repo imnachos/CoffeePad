@@ -28,6 +28,12 @@ class ProjectTree extends JPanel {
         add(scrollPane, BorderLayout.LINE_START);
     }
 
+
+    /**
+     * Fills the JTree
+     * @param node
+     * @param file
+     */
     private void getList(DefaultMutableTreeNode node, File file) {
         if(!file.isDirectory()) {
 

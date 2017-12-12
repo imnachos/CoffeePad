@@ -5,6 +5,9 @@ import com.imnachos.coffeepad.Editor.TextContainer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Listens if SPACEBAR is pressed
+ */
 public class FormatKeyListener extends AbstractAction {
 
     private TextContainer canvas;
@@ -13,14 +16,12 @@ public class FormatKeyListener extends AbstractAction {
         canvas = container;
     }
 
+    /**
+     * Calls the format applying method
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        try {
-            canvas.applyFormat();
-        }catch(Exception e){
-            e.printStackTrace();
-            //TODO Exceptions
-        }
+        canvas.applyFormat();
     }
 
 }

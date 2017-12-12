@@ -46,6 +46,12 @@ public class Settings {
 
     public static final String WINDOW_ICON = "data/images/icon.png";
 
+    public static final String ERROR_WINDOW_TITLE = "Error";
+    public static final String ERROR_CARET_LOCATION = "The cursor relocation operation failed.";
+    public static final String ERROR_SYSTEM_THEME = "The system UI theme failed to load.";
+    public static final String ERROR_IO_EXCEPTION = "Failed to load the styles in the data/styles folder.";
+    public static final String ERROR_SAVE_ERROR = "Failed to save the file.";
+
     /*
         File menu function shortcuts.
     */
